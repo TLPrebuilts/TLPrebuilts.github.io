@@ -27,6 +27,20 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .pc-card:hover {
+      box-shadow: 0 0 18px rgba(0,92,255,0.6);
+    }
+    .pc-image {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: block;
     }
     footer {
       text-align: center;
@@ -49,24 +63,21 @@
   </header>
 
   <div class="container">
-    <a href="FrostByteX.html" style="text-decoration: none; color: inherit;">
-      <div class="pc-card">
-        <h2>🧊 FrostByte X - €1499</h2>
-        <ul>
-          <li>Intel Core i7-13700KF</li>
-          <li>RTX 3060 12GB Dual Fan</li>
-          <li>64GB DDR5 RAM</li>
-          <li>1TB Samsung 980 Pro NVMe SSD</li>
-          <li>Cooler Master MasterLiquid V2</li>
-          <li>MSI B760 Gaming Plus WiFi Motherboard</li>
-          <li>be quiet! 700W 80+ Gold PSU</li>
-          <li>Klonik Observatory Lite Mesh Case</li>
-          <li>Windows 11 Pro | Apps pre-installed</li>
-        </ul>
-      </div>
+    <a href="FrostByteX.html" class="pc-card">
+      <img src="images/imageprototype.jpg" alt="FrostByte X" class="pc-image" />
+      <h2>🧊 FrostByte X - €750</h2>
+      <ul>
+        <li>Intel Core i7-13700KF</li>
+        <li>RTX 3060 12GB Dual Fan GPU</li>
+        <li>64GB DDR5 RAM</li>
+        <li>1TB Samsung 980 Pro NVMe SSD</li>
+        <li>Cooler Master MasterLiquid V2</li>
+        <li>MSI B760 Gaming Plus WiFi Motherboard</li>
+        <li>be quiet! 700W 80+ Gold PSU</li>
+        <li>Klonik Observatory Lite Mesh Case (White)</li>
+        <li>Windows 11 Pro | Chrome, Discord, Steam Pre-installed</li>
+      </ul>
     </a>
-
-    <!-- Add more builds below if needed -->
 
     <p>📧 Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
   </div>
