@@ -1,59 +1,105 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <title>TLPrebuilts | Custom PCs by TLWorks</title> <style> body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f5f5; color: #222;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TLPrebuilts</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #111;
+      color: white;
     }
-    header { background: #111; color: white; padding: 2rem; text-align: centernano index.html    }
+
+    header {
+      padding: 2rem 1rem;
+      text-align: center;
+      background-color: #222;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
+      padding: 1rem;
     }
+
     .pc-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: box-shadow 0.3s ease;
+      display: block;
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
       text-decoration: none;
       color: inherit;
-      display: block;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     }
-    .pc-card:hover {
-      box-shadow: 0 0 18px rgba(0,92,255,0.6);
-    }
+
     .pc-card-content {
       display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 20px;
     }
+
     .pc-card-text {
       flex: 1;
+      min-width: 240px;
     }
+
+    .pc-card-text h2 {
+      margin-top: 0;
+    }
+
+    .pc-card-text ul {
+      padding-left: 1.2rem;
+    }
+
     .pc-image {
       width: 280px;
       border-radius: 8px;
       flex-shrink: 0;
     }
+
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
       background: #222;
       color: white;
       margin-top: 2rem;
     }
+
     a {
       color: #4ecdc4;
       text-decoration: none;
     }
 
-    /* Responsive: stack on small screens */
-    @media (max-width: 600px) {
+    /* Responsive styling */
+    @media (max-width: 768px) {
       .pc-card-content {
         flex-direction: column;
+        align-items: flex-start;
       }
+
       .pc-image {
         width: 100%;
-        max-width: 400px;
+        max-width: 100%;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .pc-card-text ul {
+        font-size: 0.95rem;
+      }
+
+      .pc-card-text h2 {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -69,24 +115,24 @@
     <a href="FrostByteX.html" class="pc-card">
       <div class="pc-card-content">
         <div class="pc-card-text">
-          <h2>🧊 FrostByte X - €750</h2>
+          <h2>❄️ FrostByte X - €750</h2>
           <ul>
             <li>Intel Core i3-12100F</li>
-            <li>GTX 1660 SUPER OC 6GB Dual Fan GPU</li>
-            <li>16GB DDR4 3200mhz RAM</li>
-            <li>512TB NVMe SSD</li>
-            <li>Intel Cpu Cooler</li>
+            <li>GTX 1660 Super OC 6GB Dual Fan GPU</li>
+            <li>16GB DDR4 3200MHz RAM</li>
+            <li>512GB NVMe SSD</li>
+            <li>Intel CPU Cooler</li>
             <li>Asrock B660M PRO RS Motherboard</li>
             <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
             <li>Deepcool CG530 Midi Tower Black</li>
-            <li>Windows 11 Pro | Chrome, Discord, Steam and 1 App of CHOICE Pre-installed</li>
+            <li>Windows 11 Pro | Chrome, Discord, Steam & 1 app of choice pre-installed</li>
           </ul>
         </div>
-        <img src="images/imageprototype.jpg" alt="FrostByte X" class="pc-image" />
+        <img src="images/frostbyte1.jpg" alt="FrostByte X" class="pc-image" />
       </div>
     </a>
 
-    <p>📧 Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
+    <p>📩 Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
   </div>
 
   <footer>

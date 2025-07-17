@@ -6,34 +6,41 @@
   <title>FrostByte X - TLPrebuilts</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #111;
-      color: #eee;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #f1f1f1;
     }
 
     header {
-      background-color: #1e1e1e;
       padding: 2rem;
       text-align: center;
+      background: #1a1a1a;
     }
 
     .container {
-      display: flex;
-      flex-direction: row;
+      max-width: 1000px;
+      margin: auto;
       padding: 2rem;
-      gap: 2rem;
+    }
+
+    .pc-section {
+      display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      gap: 2rem;
+      align-items: flex-start;
     }
 
-    .image-section {
+    .image-slider {
       position: relative;
-      width: 280px;
+      width: 320px;
+      height: 240px;
     }
 
-    .pc-image {
+    .image-slider img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 8px;
     }
 
@@ -42,152 +49,164 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 2rem;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 0.2rem 0.5rem;
-      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
       color: white;
-      border-radius: 5px;
-      user-select: none;
-    }
-
-    .arrow.left {
-      left: -1.5rem;
-    }
-
-    .arrow.right {
-      right: -1.5rem;
-    }
-
-    .info-section {
-      max-width: 500px;
-    }
-
-    .short-desc {
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      color: #4ecdc4;
-      margin-top: 1rem;
+      z-index: 1;
     }
 
-    .full-desc, .specs, .benchmarks {
-      margin-top: 2rem;
+    .arrow.left { left: 0; }
+    .arrow.right { right: 0; }
+
+    .pc-details {
+      flex: 1;
     }
 
-    .specs ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .specs li {
+    .build-title {
+      font-size: 1.8rem;
       margin-bottom: 0.5rem;
     }
 
-    .btn-scroll {
+    .short-description {
+      cursor: pointer;
+      color: #4ecdc4;
+    }
+
+    .full-description {
+      display: none;
+      transition: max-height 0.4s ease;
+    }
+
+    .specs, .benchmarks {
+      margin-top: 2rem;
+    }
+
+    button.scroll-benchmarks {
       margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: #4ecdc4;
-      color: #000;
+      padding: 0.7rem 1.2rem;
+      background: #4ecdc4;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      color: black;
+      font-weight: bold;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
       background: #222;
-      margin-top: 3rem;
+      color: white;
+      margin-top: 4rem;
     }
 
-    @media (max-width: 700px) {
-      .container {
+    @media (max-width: 768px) {
+      .pc-section {
         flex-direction: column;
         align-items: center;
+      }
+
+      .image-slider {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+      }
+
+      .arrow {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>FrostByte X</h1>
-    <p>High-performance prebuilt custom PC by TLPrebuilts</p>
-  </header>
+<header>
+  <h1>FrostByte X</h1>
+  <p>Performance & style at an unbeatable price - €750</p>
+</header>
 
-  <div class="container">
-    <div class="image-section">
-      <span class="arrow left" onclick="prevImage()">&#9664;</span>
-      <img id="pcImage" src="images/imageprototype.jpg" alt="FrostByte X" class="pc-image"/>
-      <span class="arrow right" onclick="nextImage()">&#9654;</span>
+<div class="container">
+
+  <div class="pc-section">
+    <div class="image-slider">
+      <button class="arrow left" onclick="prevImage()">❮</button>
+      <img id="slider-image" src="images/frostbyte1.jpg" alt="FrostByte X Image">
+      <button class="arrow right" onclick="nextImage()">❯</button>
     </div>
 
-    <div class="info-section">
-      <h2>€750 - FrostByte X</h2>
-      <p class="short-desc" onclick="scrollToSection('description')">Click to read full description ↓</p>
+    <div class="pc-details">
+      <h2 class="build-title">FrostByte X - €750</h2>
 
-      <div id="description" class="full-desc">
-        <p>
-          The FrostByte X is a perfect balance of style, performance, and value.
-          It’s tailored for gamers and creators who want smooth 1080p to 1440p gaming,
-          fast productivity, and a clean aesthetic—all at a great price.
-        </p>
-        <button class="btn-scroll" onclick="scrollToSection('benchmarks')">See Benchmarks</button>
+      <p class="short-description" onclick="toggleDescription()">Click to reveal more...</p>
+      <div id="description" class="full-description">
+        <p>The FrostByte X is a finely tuned beast designed to deliver top-tier gaming and editing performance without breaking your wallet. Whether you're streaming, rendering, or just gaming for hours, this build won’t let you down.</p>
       </div>
 
       <div class="specs">
-        <h3>Specs:</h3>
+        <h3>Specifications</h3>
         <ul>
           <li>Intel Core i3-12100F</li>
-          <li>GTX 1660 SUPER OC 6GB Dual Fan GPU</li>
+          <li>GTX 1660 Super OC 6GB (Dual Fan)</li>
           <li>16GB DDR4 3200MHz RAM</li>
-          <li>512GB Samsung 980 Pro NVMe SSD</li>
+          <li>512GB NVMe SSD</li>
           <li>Intel Stock Cooler</li>
-          <li>ASRock B660M PRO RS Motherboard</li>
+          <li>Asrock B660M PRO RS Motherboard</li>
           <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
-          <li>Deepcool CG530 Mid Tower Case</li>
-          <li>Windows 11 Pro Activated</li>
-          <li>Chrome, Discord, Steam, 1 Game/App of your choice pre-installed</li>
+          <li>Deepcool CG530 Black Mid Tower</li>
+          <li>Windows 11 Pro + Chrome, Discord, Steam, 1 app of your choice pre-installed</li>
         </ul>
-      </div>
-
-      <div id="benchmarks" class="benchmarks">
-        <h3>Benchmarks:</h3>
-        <p>Coming soon: Detailed FPS and workload performance across popular games and creator tools.</p>
+        <button class="scroll-benchmarks" onclick="scrollToBenchmarks()">See Benchmarks</button>
       </div>
     </div>
   </div>
 
-  <footer>
-    <p>© 2025 TLPrebuilts. All rights reserved. Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
-  </footer>
+  <div class="benchmarks" id="benchmarks">
+    <h3>Benchmarks</h3>
+    <ul>
+      <li>Fortnite (High): 130+ FPS</li>
+      <li>GTA V (Very High): 90+ FPS</li>
+      <li>Cyberpunk 2077 (Medium): 60 FPS</li>
+      <li>Valorant: 200+ FPS</li>
+      <li>CS2: 160+ FPS</li>
+    </ul>
+  </div>
+</div>
 
-  <script>
-    const images = [
-      "images/imageprototype.jpg",
-      "images/imageprototype2.jpg",
-      "images/imageprototype3.jpg"
-    ];
-    let currentImage = 0;
+<footer>
+  <p>© 2025 TLPrebuilts. All rights reserved.</p>
+</footer>
 
-    function showImage(index) {
-      const img = document.getElementById("pcImage");
-      if (images[index]) {
-        img.src = images[index];
-      }
-    }
+<script>
+  const images = ["images/frostbyte1.jpg", "images/frostbyte2.jpg", "images/frostbyte3.jpg"];
+  let current = 0;
 
-    function prevImage() {
-      currentImage = (currentImage - 1 + images.length) % images.length;
-      showImage(currentImage);
-    }
+  function showImage(index) {
+    const img = document.getElementById('slider-image');
+    img.src = images[index];
+  }
 
-    function nextImage() {
-      currentImage = (currentImage + 1) % images.length;
-      showImage(currentImage);
-    }
+  function nextImage() {
+    current = (current + 1) % images.length;
+    showImage(current);
+  }
 
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
+  function prevImage() {
+    current = (current - 1 + images.length) % images.length;
+    showImage(current);
+  }
+
+  function toggleDescription() {
+    const desc = document.getElementById("description");
+    desc.style.display = desc.style.display === "block" ? "none" : "block";
+  }
+
+  function scrollToBenchmarks() {
+    const section = document.getElementById("benchmarks");
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
 </body>
 </html>
