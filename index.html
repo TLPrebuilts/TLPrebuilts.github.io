@@ -36,11 +36,18 @@
     .pc-card:hover {
       box-shadow: 0 0 18px rgba(0,92,255,0.6);
     }
+    .pc-card-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .pc-card-text {
+      flex: 1;
+    }
     .pc-image {
-      max-width: 100%;
+      width: 280px;
       border-radius: 8px;
-      margin-bottom: 1rem;
-      display: block;
+      flex-shrink: 0;
     }
     footer {
       text-align: center;
@@ -53,6 +60,17 @@
       color: #4ecdc4;
       text-decoration: none;
     }
+
+    /* Responsive: stack on small screens */
+    @media (max-width: 600px) {
+      .pc-card-content {
+        flex-direction: column;
+      }
+      .pc-image {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -64,19 +82,23 @@
 
   <div class="container">
     <a href="FrostByteX.html" class="pc-card">
-      <img src="images/imageprototype.jpg" alt="FrostByte X" class="pc-image" />
-      <h2>🧊 FrostByte X - €750</h2>
-      <ul>
-        <li>Intel Core i7-13700KF</li>
-        <li>RTX 3060 12GB Dual Fan GPU</li>
-        <li>64GB DDR5 RAM</li>
-        <li>1TB Samsung 980 Pro NVMe SSD</li>
-        <li>Cooler Master MasterLiquid V2</li>
-        <li>MSI B760 Gaming Plus WiFi Motherboard</li>
-        <li>be quiet! 700W 80+ Gold PSU</li>
-        <li>Klonik Observatory Lite Mesh Case (White)</li>
-        <li>Windows 11 Pro | Chrome, Discord, Steam Pre-installed</li>
-      </ul>
+      <div class="pc-card-content">
+        <div class="pc-card-text">
+          <h2>🧊 FrostByte X - €750</h2>
+          <ul>
+            <li>Intel Core i7-13700KF</li>
+            <li>RTX 3060 12GB Dual Fan GPU</li>
+            <li>64GB DDR5 RAM</li>
+            <li>1TB Samsung 980 Pro NVMe SSD</li>
+            <li>Cooler Master MasterLiquid V2</li>
+            <li>MSI B760 Gaming Plus WiFi Motherboard</li>
+            <li>be quiet! 700W 80+ Gold PSU</li>
+            <li>Klonik Observatory Lite Mesh Case (White)</li>
+            <li>Windows 11 Pro | Chrome, Discord, Steam Pre-installed</li>
+          </ul>
+        </div>
+        <img src="images/imageprototype.jpg" alt="FrostByte X" class="pc-image" />
+      </div>
     </a>
 
     <p>📧 Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>

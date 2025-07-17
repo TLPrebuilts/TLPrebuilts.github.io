@@ -1,72 +1,215 @@
-  GNU nano 8.5                                                                                                                    FrostByteX.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FrostByte X - Custom PCs by Trey</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #005eff;
-    }
-    h2 {
-      color: #111;
-      margin-top: 30px;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul li {
-      padding: 8px 0;
-      border-bottom: 1px solid #ddd;
-    }
-    .back {
-      margin-top: 20px;
-      display: block;
-      text-align: center;
-      color: #005eff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .back:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FrostByte X - Detailed Build</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+    color: #222;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .left-side {
+    flex: 1 1 350px;
+    max-width: 400px;
+    position: relative;
+  }
+  .image-viewer {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  }
+  .image-viewer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 40px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 6px;
+    user-select: none;
+  }
+  .arrow-left {
+    left: 5px;
+  }
+  .arrow-right {
+    right: 5px;
+  }
+
+  .right-side {
+    flex: 2 1 500px;
+  }
+
+  .build-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .description-snippet {
+    background: #e7f0ff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    max-width: 400px;
+    margin-bottom: 15px;
+    color: #0049b7;
+    font-weight: 600;
+  }
+  .description-snippet:hover {
+    background: #c1d7ff;
+  }
+
+  .full-description {
+    max-width: 700px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  .specs-list {
+    max-width: 700px;
+    margin-bottom: 30px;
+  }
+  .specs-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .specs-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .reviews {
+    max-width: 700px;
+  }
+  .review {
+    border-top: 1px solid #ddd;
+    padding: 12px 0;
+  }
+  .review:first-child {
+    border-top: none;
+  }
+  .review-author {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .review-text {
+    font-style: italic;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>FrostByte X</h1>
-    <p> M-% Built for extreme gaming and creative workloa</p>/p>
 
-    <h2>Specifications:</h2>
-    <ul>
-      <li>Intel Core i7-13700KF</li>
-      <li>RTX 3060 12GB Dual Fan GPU</li>
-      <li>64GB DDR5 RAM</li>
-      <li>1TB Samsung 980 Pro NVMe SSD</li>
-      <li>MSI B760 Gaming Plus WiFi Motherboard</li>
-      <li>Cooler Master MasterLiquid V2 Cooler</li>
-      <li>be quiet! 700W 80+ Gold PSU</li>
-      <li>Klonik Observatory Lite Mesh Case (White)</li>
-      <li>Windows 11 Activated</li>
-      <li>Chrome, Discord, Steam Pre-installed</li>
-                                                                                                                               [ Read 74 lines ]
-^G Help           ^O Write Out      ^F Where Is       ^K Cut            ^T Execute        ^C Location       M-U Undo          M-A Set Mark      M-] To Bracket    M-B Previous      ◂ Back            ^◂ Prev Word      ^A Home           ^P Prev Line      M-▴ Scroll Up
-^X Exit           ^R Read File      ^\ Replace        ^U Paste          ^J Justify        ^/ Go To Line     M-E Redo          M-6 Copy          ^B Where Was      M-F Next          ▸ Forward         ^▸ Next Word      ^E End            ^N Next Line      M-▾ Scroll Down
+<div class="container">
+
+  <div class="left-side">
+    <div class="image-viewer">
+      <img id="buildImage" src="images/imageprototype.jpg" alt="FrostByte X Build" />
+    </div>
+    <button class="arrow-btn arrow-left" onclick="prevImage()">‹</button>
+    <button class="arrow-btn arrow-right" onclick="nextImage()">›</button>
+  </div>
+
+  <div class="right-side">
+    <div class="build-name">🧊 FrostByte X</div>
+
+    <div class="description-snippet" onclick="scrollToDescription()">
+      Click here for a quick summary of this beast of a PC...
+    </div>
+
+    <div id="fullDescription" class="full-description">
+      The FrostByte X is built for extreme gaming and creative workloads. Designed with the latest Intel i7 processor and NVIDIA RTX 3060 GPU, it handles everything from AAA games to video editing with ease. Featuring a sleek white mesh case and ultra-efficient cooling, it's as stylish as it is powerful.
+    </div>
+
+    <div class="specs-list">
+      <h3>Specifications</h3>
+      <ul>
+        <li>Intel Core i7-13700KF</li>
+        <li>RTX 3060 12GB Dual Fan GPU</li>
+        <li>64GB DDR5 RAM</li>
+        <li>1TB Samsung 980 Pro NVMe SSD</li>
+        <li>Cooler Master MasterLiquid V2</li>
+        <li>MSI B760 Gaming Plus WiFi Motherboard</li>
+        <li>be quiet! 700W 80+ Gold PSU</li>
+        <li>Klonik Observatory Lite Mesh Case (White)</li>
+        <li>Windows 11 Pro</li>
+        <li>Chrome, Discord, Steam Pre-installed</li>
+      </ul>
+    </div>
+
+    <div class="reviews">
+      <h3>Reviews</h3>
+      <div class="review">
+        <div class="review-author">Alex M.</div>
+        <div class="review-text">Amazing performance and super quiet! Highly recommend.</div>
+      </div>
+      <div class="review">
+        <div class="review-author">Jessica L.</div>
+        <div class="review-text">Perfect for my video editing work, great value.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const images = [
+    "images/imageprototype.jpg",
+    "images/test2.jpg",
+    "images/test3.jpg"
+  ];
+  let currentImageIndex = 0;
+
+  function showImage(index) {
+    const img = document.getElementById('buildImage');
+    if (index < 0) {
+      currentImageIndex = images.length - 1;
+    } else if (index >= images.length) {
+      currentImageIndex = 0;
+    } else {
+      currentImageIndex = index;
+    }
+    img.src = images[currentImageIndex];
+  }
+
+  function prevImage() {
+    showImage(currentImageIndex - 1);
+  }
+
+  function nextImage() {
+    showImage(currentImageIndex + 1);
+  }
+
+  function scrollToDescription() {
+    document.getElementById('fullDescription').scrollIntoView({behavior: 'smooth'});
+  }
+</script>
+
+</body>
+</html>
