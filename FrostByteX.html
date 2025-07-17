@@ -2,212 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FrostByte X - TLPrebuilts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrostByte X</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
       background: #111;
-      color: #f1f1f1;
-    }
-
-    header {
-      padding: 2rem;
-      text-align: center;
-      background: #1a1a1a;
+      color: #eee;
+      scroll-behavior: smooth;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: auto;
       padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #4ecdc4;
     }
 
     .pc-section {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .image-slider {
       position: relative;
-      width: 320px;
-      height: 240px;
+      width: 100%;
+      max-width: 400px;
     }
 
-    .image-slider img {
+    .slider-image {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .slider-image.active {
+      display: block;
     }
 
     .arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 2rem;
-      background-color: rgba(0, 0, 0, 0.5);
-      border: none;
+      background: rgba(0,0,0,0.6);
       color: white;
+      border: none;
+      font-size: 2rem;
       padding: 0.5rem 1rem;
       cursor: pointer;
       z-index: 1;
     }
 
-    .arrow.left { left: 0; }
-    .arrow.right { right: 0; }
+    .arrow.left {
+      left: 10px;
+    }
 
-    .pc-details {
+    .arrow.right {
+      right: 10px;
+    }
+
+    .details {
       flex: 1;
     }
 
-    .build-title {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .short-description {
-      cursor: pointer;
-      color: #4ecdc4;
-    }
-
-    .full-description {
-      display: none;
-      transition: max-height 0.4s ease;
-    }
-
-    .specs, .benchmarks {
-      margin-top: 2rem;
-    }
-
-    button.scroll-benchmarks {
+    .description {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
       margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
+    }
+
+    .description.visible {
+      max-height: 500px;
+    }
+
+    .show-description {
+      margin-top: 1rem;
       background: #4ecdc4;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
       color: black;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
       font-weight: bold;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
+    .specs {
+      margin-top: 3rem;
+    }
+
+    .specs ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .specs li {
       background: #222;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .benchmarks {
+      margin-top: 5rem;
+      text-align: center;
+    }
+
+    .benchmarks button {
+      background: #ff0055;
       color: white;
-      margin-top: 4rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
     }
 
     @media (max-width: 768px) {
       .pc-section {
         flex-direction: column;
-        align-items: center;
-      }
-
-      .image-slider {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
+        text-align: center;
       }
 
       .arrow {
         font-size: 1.5rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      h1 {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>FrostByte X</h1>
-  <p>Performance & style at an unbeatable price - €750</p>
-</header>
+  <div class="container">
+    <h1>~J FrostByte X - €750</h1>
 
-<div class="container">
+    <div class="pc-section">
+      <div class="image-slider">
+        <img src="images/imageprototype.jpg" class="slider-image active" />
+        <img src="images/imageprototype2.jpg" class="slider-image" />
+        <img src="images/imageprototype3.jpg" class="slider-image" />
 
-  <div class="pc-section">
-    <div class="image-slider">
-      <button class="arrow left" onclick="prevImage()">❮</button>
-      <img id="slider-image" src="images/frostbyte1.jpg" alt="FrostByte X Image">
-      <button class="arrow right" onclick="nextImage()">❯</button>
+        <button class="arrow left" onclick="changeSlide(-1)">‹</button>
+        <button class="arrow right" onclick="changeSlide(1)">›</button>
+      </div>
+
+      <div class="details">
+        <p><strong>High performance, clean looks.</strong> Click to read more.</p>
+        <button class="show-description" onclick="toggleDescription()">Show Full Description</button>
+        <div id="description" class="description">
+          <p>
+            FrostByte X delivers solid 1080p gaming with a modern aesthetic. Ideal for both creators and gamers, it’s packed with performance per euro.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="pc-details">
-      <h2 class="build-title">FrostByte X - €750</h2>
+    <div class="specs">
+      <h2>Specifications</h2>
+      <ul>
+        <li>Intel Core i3-12100F</li>
+        <li>GTX 1660 Super OC 6GB Dual Fan</li>
+        <li>16GB DDR4 3200MHz RAM</li>
+        <li>512GB NVMe SSD</li>
+        <li>Intel Stock Cooler</li>
+        <li>ASRock B660M PRO RS Motherboard</li>
+        <li>Corsair 650W 80+ Bronze PSU (Fully Modular)</li>
+        <li>DeepCool CG530 Mid Tower (Black)</li>
+        <li>Windows 11 Pro + Chrome, Discord, Steam, 1 Custom App</li>
+      </ul>
+    </div>
 
-      <p class="short-description" onclick="toggleDescription()">Click to reveal more...</p>
-      <div id="description" class="full-description">
-        <p>The FrostByte X is a finely tuned beast designed to deliver top-tier gaming and editing performance without breaking your wallet. Whether you're streaming, rendering, or just gaming for hours, this build won’t let you down.</p>
-      </div>
-
-      <div class="specs">
-        <h3>Specifications</h3>
-        <ul>
-          <li>Intel Core i3-12100F</li>
-          <li>GTX 1660 Super OC 6GB (Dual Fan)</li>
-          <li>16GB DDR4 3200MHz RAM</li>
-          <li>512GB NVMe SSD</li>
-          <li>Intel Stock Cooler</li>
-          <li>Asrock B660M PRO RS Motherboard</li>
-          <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
-          <li>Deepcool CG530 Black Mid Tower</li>
-          <li>Windows 11 Pro + Chrome, Discord, Steam, 1 app of your choice pre-installed</li>
-        </ul>
-        <button class="scroll-benchmarks" onclick="scrollToBenchmarks()">See Benchmarks</button>
-      </div>
+    <div class="benchmarks">
+      <h2>See Benchmarks</h2>
+      <button onclick="window.open('https://www.youtube.com/watch?v=NlOZqLPP-ns', '_blank')">Watch Benchmarks</button>
     </div>
   </div>
 
-  <div class="benchmarks" id="benchmarks">
-    <h3>Benchmarks</h3>
-    <ul>
-      <li>Fortnite (High): 130+ FPS</li>
-      <li>GTA V (Very High): 90+ FPS</li>
-      <li>Cyberpunk 2077 (Medium): 60 FPS</li>
-      <li>Valorant: 200+ FPS</li>
-      <li>CS2: 160+ FPS</li>
-    </ul>
-  </div>
-</div>
+  <script>
+    let currentSlide = 0;
+    const images = document.querySelectorAll('.slider-image');
 
-<footer>
-  <p>© 2025 TLPrebuilts. All rights reserved.</p>
-</footer>
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
 
-<script>
-  const images = ["images/frostbyte1.jpg", "images/frostbyte2.jpg", "images/frostbyte3.jpg"];
-  let current = 0;
+    function changeSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = images.length - 1;
+      if (currentSlide >= images.length) currentSlide = 0;
+      showSlide(currentSlide);
+    }
 
-  function showImage(index) {
-    const img = document.getElementById('slider-image');
-    img.src = images[index];
-  }
-
-  function nextImage() {
-    current = (current + 1) % images.length;
-    showImage(current);
-  }
-
-  function prevImage() {
-    current = (current - 1 + images.length) % images.length;
-    showImage(current);
-  }
-
-  function toggleDescription() {
-    const desc = document.getElementById("description");
-    desc.style.display = desc.style.display === "block" ? "none" : "block";
-  }
-
-  function scrollToBenchmarks() {
-    const section = document.getElementById("benchmarks");
-    section.scrollIntoView({ behavior: 'smooth' });
-    <a href ="https://www.youtube.com/watch?v=NlOZqLPP-ns.com">Visit Example<a>
-  }
-</script>
+    function toggleDescription() {
+      const desc = document.getElementById('description');
+      desc.classList.toggle('visible');
+    }
+  </script>
 
 </body>
 </html>
