@@ -2,106 +2,145 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FrostByte X</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
-      background-color: #f4f4f4;
+      background: #111;
+      color: #eee;
+      scroll-behavior: smooth;
     }
 
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .left, .right {
-      flex: 1;
-      min-width: 300px;
-      padding: 20px;
-    }
-
-    .image-carousel {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .image-carousel img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .image-carousel button {
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
-      background-color: #4ecdc4;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.2s ease;
-    }
-
-    .image-carousel button:hover {
-      background-color: #3bbcb3;
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
     }
 
     h1 {
-      color: #333;
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #4ecdc4;
     }
 
-    .short-desc {
+    .pc-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .image-slider {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .slider-image {
+      width: 100%;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .slider-image.active {
+      display: block;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    .details {
+      flex: 1;
+    }
+
+    .description {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease;
+      margin-top: 1rem;
+    }
+
+    .description.visible {
+      max-height: 500px;
+    }
+
+    .show-description {
+      margin-top: 1rem;
+      background: #4ecdc4;
+      color: black;
+      border: none;
+      padding: 0.5rem 1rem;
       cursor: pointer;
       font-weight: bold;
-      color: #007BFF;
-      margin-top: 20px;
     }
 
-    #full-desc {
-      display: none;
-      margin-top: 10px;
-      transition: opacity 0.5s ease;
+    .specs {
+      margin-top: 3rem;
     }
 
-    #specs {
-      margin-top: 30px;
+    .specs ul {
+      list-style: none;
+      padding: 0;
     }
 
-    #benchmarks {
-      margin-top: 100px;
+    .specs li {
+      background: #222;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .benchmarks {
+      margin-top: 5rem;
       text-align: center;
     }
 
-    .benchmark-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4ecdc4;
+    .benchmarks button {
+      background: #ff0055;
       color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.2s ease;
-    }
-
-    .benchmark-btn:hover {
-      background-color: #3bbcb3;
+      border-radius: 5px;
+      font-weight: bold;
     }
 
     @media (max-width: 768px) {
-      .container {
+      .pc-section {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+      }
+
+      .arrow {
+        font-size: 1.5rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      h1 {
+        font-size: 2rem;
       }
     }
   </style>
@@ -109,75 +148,72 @@
 <body>
 
   <div class="container">
-    <div class="left">
-      <div class="image-carousel">
-        <button onclick="prevImage()">←</button>
-        <img id="pcImage" src="images/frost1.jpg" alt="FrostByte X">
-        <button onclick="nextImage()">→</button>
+    <h1>~J FrostByte X - €750</h1>
+
+    <div class="pc-section">
+      <div class="image-slider">
+        <img src="images/frostbyte1.jpg" class="slider-image active" />
+        <img src="images/frostbyte2.jpg" class="slider-image" />
+        <img src="images/frostbyte3.jpg" class="slider-image" />
+
+        <button class="arrow left" onclick="changeSlide(-1)">‹</button>
+        <button class="arrow right" onclick="changeSlide(1)">›</button>
+      </div>
+
+      <div class="details">
+        <p><strong>High performance, clean looks.</strong> Click to read more.</p>
+        <button class="show-description" onclick="toggleDescription()">Show Full Description</button>
+        <div id="description" class="description">
+          <p>
+            FrostByte X delivers solid 1080p gaming with a modern aesthetic. Ideal for both creators and gamers, it’s packed with performance per euro.
+          </p>
+        </div>
       </div>
     </div>
 
-    <div class="right">
-      <h1>FrostByte X - €750</h1>
-      <div class="short-desc" onclick="scrollToDesc()">Click to reveal more about this PC ↓</div>
-    </div>
-  </div>
-
-  <div id="full-desc" class="container">
-    <p>The FrostByte X is a clean, modern high-performance PC designed for gamers and creators. Equipped with strong components and a sleek white aesthetic, it’s the perfect choice for both style and speed lovers. Built with airflow and upgrade potential in mind, this system stays cool under pressure and looks cool while doing it.</p>
-
-    <div id="specs">
-      <h2>Specifications:</h2>
+    <div class="specs">
+      <h2>Specifications</h2>
       <ul>
-        <li>CPU: Intel Core i7-13700KF</li>
-        <li>GPU: RTX 3060 12GB</li>
-        <li>RAM: 64GB DDR5</li>
-        <li>Motherboard: MSI B760 Gaming Plus WiFi</li>
-        <li>Storage: 1TB Samsung 980 Pro NVMe SSD</li>
-        <li>Cooler: Cooler Master MasterLiquid V2</li>
-        <li>Case: Klonik Observatory Lite Mesh</li>
-        <li>PSU: be quiet! 700W 80+ Gold</li>
-        <li>Wi-Fi: PCIe Card Included</li>
-        <li>Windows 11 Activated & Preinstalled</li>
-        <li>Chrome, Steam, Discord Ready</li>
+        <li>Intel Core i3-12100F</li>
+        <li>GTX 1660 Super OC 6GB Dual Fan</li>
+        <li>16GB DDR4 3200MHz RAM</li>
+        <li>512GB NVMe SSD</li>
+        <li>Intel Stock Cooler</li>
+        <li>ASRock B660M PRO RS Motherboard</li>
+        <li>Corsair 650W 80+ Bronze PSU (Fully Modular)</li>
+        <li>DeepCool CG530 Mid Tower (Black)</li>
+        <li>Windows 11 Pro + Chrome, Discord, Steam, 1 Custom App</li>
       </ul>
     </div>
 
-    <div id="benchmarks">
-      <h2>Benchmarks</h2>
-      <button class="benchmark-btn" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">See Benchmarks</button>
+    <div class="benchmarks">
+      <h2>See Benchmarks</h2>
+      <button onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">Watch Benchmarks</button>
     </div>
   </div>
 
   <script>
-    const imageList = [
-      "images/frostbyte1.jpg",
-      "images/frostbyte2.jpg",
-      "images/frostbyte3.jpg"
-    ];
+    let currentSlide = 0;
+    const images = document.querySelectorAll('.slider-image');
 
-    let currentIndex = 0;
-    const pcImage = document.getElementById("pcImage");
-
-    function showImage(index) {
-      pcImage.src = imageList[index];
+    function showSlide(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
     }
 
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-      showImage(currentIndex);
+    function changeSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = images.length - 1;
+      if (currentSlide >= images.length) currentSlide = 0;
+      showSlide(currentSlide);
     }
 
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % imageList.length;
-      showImage(currentIndex);
-    }
-
-    function scrollToDesc() {
-      const desc = document.getElementById("full-desc");
-      desc.style.display = "block";
-      desc.scrollIntoView({ behavior: "smooth" });
+    function toggleDescription() {
+      const desc = document.getElementById('description');
+      desc.classList.toggle('visible');
     }
   </script>
+
 </body>
 </html>
