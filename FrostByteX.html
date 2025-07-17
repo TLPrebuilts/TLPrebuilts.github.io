@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FrostByte X - TLPrebuilts</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -61,19 +65,25 @@
       margin-bottom: 1rem;
     }
 
-    .short-desc {
+    .desc {
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    .button {
+      background-color: #4ecdc4;
+      border: none;
+      color: #111;
+      padding: 0.6rem 1.2rem;
+      text-align: center;
+      font-size: 1rem;
       cursor: pointer;
-      font-weight: bold;
-      margin-bottom: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
     }
 
-    .full-desc {
-      display: none;
-      margin-bottom: 1rem;
-    }
-
-    .specs, .reviews {
-      margin-top: 2rem;
+    .specs, .reviews, .benchmarks {
+      margin-top: 2.5rem;
     }
 
     ul {
@@ -110,36 +120,48 @@
       <div class="info-section">
         <h2>FrostByte X</h2>
         <p class="price">€750</p>
-
-        <div class="short-desc" onclick="toggleDesc()">Click to see full description ↓</div>
-        <div class="full-desc" id="desc">
-          <p>
-            FrostByte X is a powerful and sleek mid-range PC, designed for 1080p/1440p gaming, editing, and content creation.
-            With solid airflow, high-speed storage, and upgrade-ready components, it's built for both performance and style.
-          </p>
+        <div class="desc">
+          FrostByte X is a powerful and sleek mid-range PC, designed for both gamers and creators. 
+          Ideal for 1080p or 1440p gaming, editing, and content creation. With excellent airflow, 
+          top-tier components, high-speed NVMe storage, and future-ready expandability, it's the perfect balance 
+          between power and price.
         </div>
-
-        <div class="specs">
-          <h3>Specifications:</h3>
-          <ul>
-            <li>Intel Core i3-12100F</li>
-            <li>GTX 1660 SUPER OC 6GB (Dual Fan)</li>
-            <li>16GB DDR4 3200MHz RAM</li>
-            <li>512GB Samsung 980 Pro NVMe SSD</li>
-            <li>Asrock B660M PRO RS Motherboard</li>
-            <li>Corsair 650W Full Modular PSU (80+ Bronze)</li>
-            <li>DeepCool CG530 Black Mid Tower</li>
-            <li>Intel Stock Cooler</li>
-            <li>Windows 11 Pro Activated</li>
-            <li>Pre-installed: Chrome, Discord, Steam, 1 App of Choice</li>
-          </ul>
-        </div>
-
-        <div class="reviews">
-          <h3>Customer Reviews:</h3>
-          <p>No reviews yet. Be the first to own FrostByte X!</p>
-        </div>
+        <button class="button" onclick="document.getElementById('benchmarks').scrollIntoView()">Press to See Benchmarks</button>
       </div>
+    </div>
+
+    <div class="specs">
+      <h3>Specifications:</h3>
+      <ul>
+        <li>Intel Core i3-12100F</li>
+        <li>GTX 1660 SUPER OC 6GB (Dual Fan)</li>
+        <li>16GB DDR4 3200MHz RAM</li>
+        <li>512GB Samsung 980 Pro NVMe SSD</li>
+        <li>Asrock B660M PRO RS Motherboard</li>
+        <li>Corsair 650W Full Modular PSU (80+ Bronze)</li>
+        <li>DeepCool CG530 Black Mid Tower</li>
+        <li>Intel Stock Cooler</li>
+        <li>Windows 11 Pro Activated</li>
+        <li>Pre-installed: Chrome, Discord, Steam, 1 App of Choice</li>
+      </ul>
+    </div>
+
+    <div class="benchmarks" id="benchmarks">
+      <h3>Benchmarks</h3>
+      <p>
+        Coming soon! Expect strong performance in games like:
+      </p>
+      <ul>
+        <li>✅ Fortnite: 1440p High - 120+ FPS</li>
+        <li>✅ Warzone: 1080p Medium - 90–110 FPS</li>
+        <li>✅ Valorant: 1440p Ultra - 200+ FPS</li>
+        <li>✅ GTA V: 1080p Very High - 100+ FPS</li>
+      </ul>
+    </div>
+
+    <div class="reviews">
+      <h3>Customer Reviews:</h3>
+      <p>No reviews yet. Be the first to own FrostByte X!</p>
     </div>
 
     <p style="margin-top: 2rem;">📧 Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
@@ -148,13 +170,6 @@
   <footer>
     <p>© 2025 TLPrebuilts. All rights reserved.</p>
   </footer>
-
-  <script>
-    function toggleDesc() {
-      const desc = document.getElementById("desc");
-      desc.style.display = desc.style.display === "block" ? "none" : "block";
-    }
-  </script>
 
 </body>
 </html>
