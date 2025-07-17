@@ -5,171 +5,189 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FrostByte X - TLPrebuilts</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background-color: #111;
-      color: #fff;
+      color: #eee;
     }
 
     header {
-      background: #222;
+      background-color: #1e1e1e;
       padding: 2rem;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    .product {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: row;
+      padding: 2rem;
       gap: 2rem;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .image-section {
-      flex: 1;
-      min-width: 280px;
+      position: relative;
+      width: 280px;
     }
 
-    .image-section img {
+    .pc-image {
       width: 100%;
       border-radius: 8px;
     }
 
-    .info-section {
-      flex: 2;
-    }
-
-    .info-section h2 {
-      font-size: 1.8rem;
-      margin-top: 0;
-    }
-
-    .price {
-      font-size: 1.4rem;
-      color: #4ecdc4;
-      margin-bottom: 1rem;
-    }
-
-    .desc {
-      font-weight: normal;
-      margin-bottom: 1rem;
-    }
-
-    .button {
-      background-color: #4ecdc4;
-      border: none;
-      color: #111;
-      padding: 0.6rem 1.2rem;
-      text-align: center;
-      font-size: 1rem;
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.2rem 0.5rem;
       cursor: pointer;
-      border-radius: 6px;
+      color: white;
+      border-radius: 5px;
+      user-select: none;
+    }
+
+    .arrow.left {
+      left: -1.5rem;
+    }
+
+    .arrow.right {
+      right: -1.5rem;
+    }
+
+    .info-section {
+      max-width: 500px;
+    }
+
+    .short-desc {
+      cursor: pointer;
+      color: #4ecdc4;
       margin-top: 1rem;
     }
 
-    .specs, .reviews, .benchmarks {
-      margin-top: 2.5rem;
+    .full-desc, .specs, .benchmarks {
+      margin-top: 2rem;
     }
 
-    ul {
-      padding-left: 1.2rem;
+    .specs ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .specs li {
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-scroll {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #4ecdc4;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
       background: #222;
-      color: white;
       margin-top: 3rem;
     }
 
-    a {
-      color: #4ecdc4;
-      text-decoration: none;
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>TLPrebuilts</h1>
-    <p>Flipping high-quality custom PCs for gamers and creators</p>
+    <h1>FrostByte X</h1>
+    <p>High-performance prebuilt custom PC by TLPrebuilts</p>
   </header>
 
   <div class="container">
-    <div class="product">
-      <div class="image-section">
-        <img src="images/imageprototype.jpg" alt="FrostByte X" />
+    <div class="image-section">
+      <span class="arrow left" onclick="prevImage()">&#9664;</span>
+      <img id="pcImage" src="images/imageprototype.jpg" alt="FrostByte X" class="pc-image"/>
+      <span class="arrow right" onclick="nextImage()">&#9654;</span>
+    </div>
+
+    <div class="info-section">
+      <h2>€750 - FrostByte X</h2>
+      <p class="short-desc" onclick="scrollToSection('description')">Click to read full description ↓</p>
+
+      <div id="description" class="full-desc">
+        <p>
+          The FrostByte X is a perfect balance of style, performance, and value.
+          It’s tailored for gamers and creators who want smooth 1080p to 1440p gaming,
+          fast productivity, and a clean aesthetic—all at a great price.
+        </p>
+        <button class="btn-scroll" onclick="scrollToSection('benchmarks')">See Benchmarks</button>
       </div>
 
-      <div class="info-section">
-        <h2>FrostByte X</h2>
-        <p class="price">€750</p>
-        <div class="desc">
-          FrostByte X is a powerful and sleek mid-range PC, designed for both gamers and creators. 
-          Ideal for 1080p or 1440p gaming, editing, and content creation. With excellent airflow, 
-          top-tier components, high-speed NVMe storage, and future-ready expandability, it's the perfect balance 
-          between power and price.
-        </div>
-        <button class="button" onclick="document.getElementById('benchmarks').scrollIntoView()">Press to See Benchmarks</button>
+      <div class="specs">
+        <h3>Specs:</h3>
+        <ul>
+          <li>Intel Core i3-12100F</li>
+          <li>GTX 1660 SUPER OC 6GB Dual Fan GPU</li>
+          <li>16GB DDR4 3200MHz RAM</li>
+          <li>512GB Samsung 980 Pro NVMe SSD</li>
+          <li>Intel Stock Cooler</li>
+          <li>ASRock B660M PRO RS Motherboard</li>
+          <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
+          <li>Deepcool CG530 Mid Tower Case</li>
+          <li>Windows 11 Pro Activated</li>
+          <li>Chrome, Discord, Steam, 1 Game/App of your choice pre-installed</li>
+        </ul>
+      </div>
+
+      <div id="benchmarks" class="benchmarks">
+        <h3>Benchmarks:</h3>
+        <p>Coming soon: Detailed FPS and workload performance across popular games and creator tools.</p>
       </div>
     </div>
-
-    <div class="specs">
-      <h3>Specifications:</h3>
-      <ul>
-        <li>Intel Core i3-12100F</li>
-        <li>GTX 1660 SUPER OC 6GB (Dual Fan)</li>
-        <li>16GB DDR4 3200MHz RAM</li>
-        <li>512GB Samsung 980 Pro NVMe SSD</li>
-        <li>Asrock B660M PRO RS Motherboard</li>
-        <li>Corsair 650W Full Modular PSU (80+ Bronze)</li>
-        <li>DeepCool CG530 Black Mid Tower</li>
-        <li>Intel Stock Cooler</li>
-        <li>Windows 11 Pro Activated</li>
-        <li>Pre-installed: Chrome, Discord, Steam, 1 App of Choice</li>
-      </ul>
-    </div>
-
-    <div class="benchmarks" id="benchmarks">
-      <h3>Benchmarks</h3>
-      <p>
-        Coming soon! Expect strong performance in games like:
-      </p>
-      <ul>
-        <li>✅ Fortnite: 1440p High - 120+ FPS</li>
-        <li>✅ Warzone: 1080p Medium - 90–110 FPS</li>
-        <li>✅ Valorant: 1440p Ultra - 200+ FPS</li>
-        <li>✅ GTA V: 1080p Very High - 100+ FPS</li>
-      </ul>
-    </div>
-
-    <div class="reviews">
-      <h3>Customer Reviews:</h3>
-      <p>No reviews yet. Be the first to own FrostByte X!</p>
-    </div>
-
-    <p style="margin-top: 2rem;">📧 Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
   </div>
 
   <footer>
-    <p>© 2025 TLPrebuilts. All rights reserved.</p>
+    <p>© 2025 TLPrebuilts. All rights reserved. Contact: <a href="mailto:tlprebuilts@gmail.com">tlprebuilts@gmail.com</a></p>
   </footer>
 
+  <script>
+    const images = [
+      "images/imageprototype.jpg",
+      "images/imageprototype2.jpg",
+      "images/imageprototype3.jpg"
+    ];
+    let currentImage = 0;
+
+    function showImage(index) {
+      const img = document.getElementById("pcImage");
+      if (images[index]) {
+        img.src = images[index];
+      }
+    }
+
+    function prevImage() {
+      currentImage = (currentImage - 1 + images.length) % images.length;
+      showImage(currentImage);
+    }
+
+    function nextImage() {
+      currentImage = (currentImage + 1) % images.length;
+      showImage(currentImage);
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
