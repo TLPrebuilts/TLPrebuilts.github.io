@@ -28,6 +28,27 @@
       padding: 1rem;
     }
 
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      padding: 0 1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: none;
+      background: #1a1a1a;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 2px #4ecdc4;
+    }
+
     .pc-card {
       display: block;
       background: #1a1a1a;
@@ -37,6 +58,15 @@
       color: inherit;
       margin-bottom: 2rem;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .pc-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .pc-card.hidden {
+      display: none;
     }
 
     .pc-card-content {
@@ -54,6 +84,7 @@
 
     .pc-card-text h2 {
       margin-top: 0;
+      color: #4ecdc4;
     }
 
     .pc-card-text ul {
@@ -79,7 +110,6 @@
       text-decoration: none;
     }
 
-    /* Cart notification */
     .cart-notification {
       position: fixed;
       top: 20px;
@@ -100,7 +130,6 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Cart icon */
     .cart-icon {
       position: absolute;
       top: 20px;
@@ -125,7 +154,6 @@
       font-weight: bold;
     }
 
-    /* Responsive styling */
     @media (max-width: 768px) {
       .pc-card-content {
         flex-direction: column;
@@ -170,6 +198,10 @@
     </a>
   </header>
 
+  <div class="search-container">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search PCs...">
+  </div>
+
   <div class="container">
     <a href="FrostByteX.html" class="pc-card">
       <div class="pc-card-content">
@@ -200,6 +232,24 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('searchInput');
+      const pcCards = document.querySelectorAll('.pc-card');
+      
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        pcCards.forEach(card => {
+          const title = card.querySelector('h2').textContent.toLowerCase();
+          const specs = card.querySelector('ul').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm) || specs.includes(searchTerm)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+
       const cartCount = document.getElementById('cartCount');
       const cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
       cartCount.textContent = cartItems;

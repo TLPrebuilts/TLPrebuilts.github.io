@@ -94,6 +94,7 @@
     .cart-item-actions {
       display: flex;
       gap: 15px;
+      align-items: center;
     }
     
     .cart-btn {
@@ -103,6 +104,26 @@
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s ease;
+    }
+    
+    .quantity-btn {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #4ecdc4;
+      color: #111;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .quantity-display {
+      font-size: 1.1rem;
+      min-width: 25px;
+      text-align: center;
     }
     
     .remove-btn {
@@ -217,7 +238,7 @@
       const cartTotal = document.querySelector('.cart-total');
       
       function updateCartDisplay() {
-        const cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
+        let cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
         
         if (cartItems > 0) {
           const price = 750;
@@ -228,9 +249,12 @@
               <img src="images/frostbyte1.jpg" alt="FrostByte X" class="cart-item-image">
               <div class="cart-item-details">
                 <div class="cart-item-title">FrostByte X</div>
-                <div class="cart-item-price">€${price} × ${cartItems}</div>
+                <div class="cart-item-price">€${price} × ${cartItems} = €${totalPrice}</div>
                 <div class="cart-item-actions">
-                  <button class="cart-btn remove-btn" id="removeItem">REMOVE</button>
+                  <button class="quantity-btn" id="decreaseCartQty">-</button>
+                  <span class="quantity-display">${cartItems}</span>
+                  <button class="quantity-btn" id="increaseCartQty">+</button>
+                  <button class="cart-btn remove-btn" id="removeItem">REMOVE ALL</button>
                 </div>
               </div>
             </div>
@@ -240,6 +264,21 @@
           cartTotal.style.display = 'block';
           checkoutSection.style.display = 'flex';
           
+          // Quantity controls in cart
+          document.getElementById('increaseCartQty').addEventListener('click', function() {
+            cartItems++;
+            localStorage.setItem('cartItems', cartItems.toString());
+            updateCartDisplay();
+          });
+
+          document.getElementById('decreaseCartQty').addEventListener('click', function() {
+            if (cartItems > 1) {
+              cartItems--;
+              localStorage.setItem('cartItems', cartItems.toString());
+              updateCartDisplay();
+            }
+          });
+
           document.getElementById('removeItem').addEventListener('click', function() {
             const cartItem = document.getElementById('cartItem');
             cartItem.classList.add('item-removing');
@@ -250,6 +289,7 @@
             }, 300);
           });
         } else {
+          // Cart is empty
           cartContainer.innerHTML = `
             <div class="empty-cart">
               Your cart is empty<br><br>
@@ -261,6 +301,7 @@
         }
       }
       
+      // Initial cart display
       updateCartDisplay();
     });
   </script>
