@@ -31,6 +31,20 @@
       text-decoration: none;
     }
     
+    .build-name {
+      text-align: center;
+      padding: 20px 0;
+      background: #1a1a1a;
+      margin-bottom: 20px;
+    }
+    
+    .build-name h1 {
+      color: #4ecdc4;
+      font-size: 2.5rem;
+      margin: 0;
+      text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+    }
+    
     .container {
       max-width: 1400px;
       margin: 0 auto;
@@ -308,6 +322,10 @@
     }
     
     @media (max-width: 768px) {
+      .build-name h1 {
+        font-size: 2rem;
+      }
+      
       .pc-showcase {
         flex-direction: column;
       }
@@ -353,6 +371,10 @@
       <span class="cart-count" id="cartCount">0</span>
     </a>
   </header>
+  
+  <div class="build-name">
+    <h1>❄️ FROSTBYTE X</h1>
+  </div>
   
   <div class="container">
     <div class="pc-showcase">
