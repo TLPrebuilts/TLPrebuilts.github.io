@@ -2,177 +2,220 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FrostByte X</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
+      padding: 0;
+      line-height: 1.6;
       background-color: #111;
       color: white;
     }
 
     .container {
-      padding: 2rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .pc-content {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .image-section {
+    .left, .right {
       flex: 1;
       min-width: 300px;
+      padding: 20px;
     }
 
-    .pc-image {
-      width: 100%;
+    .image-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .image-carousel img {
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
+      transition: all 0.3s ease-in-out;
       max-height: 400px;
       object-fit: cover;
     }
 
-    .details-section {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .description-container {
-      margin-bottom: 1.5rem;
-    }
-
-    .description-toggle {
-      color: #4ecdc4;
+    .image-carousel button {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      background-color: #4ecdc4;
+      color: #111;
+      border: none;
       cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+      font-weight: bold;
+    }
+
+    .image-carousel button:hover {
+      background-color: #3bbcb3;
+    }
+
+    h1 {
+      color: #4ecdc4;
+      margin-top: 0;
+    }
+
+    .short-desc {
+      cursor: pointer;
+      font-weight: bold;
+      color: #4ecdc4;
+      margin-top: 20px;
       text-decoration: underline;
-      margin-top: 0.5rem;
+    }
+
+    #full-desc {
+      display: none;
+      margin-top: 10px;
+      transition: opacity 0.5s ease;
+      width: 100%;
+    }
+
+    #specs {
+      margin-top: 30px;
+    }
+
+    #specs ul {
+      padding-left: 1.2rem;
+    }
+
+    #benchmarks {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .benchmark-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4ecdc4;
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+      text-decoration: none;
       display: inline-block;
     }
 
-    .hidden {
-      display: none;
+    .benchmark-btn:hover {
+      background-color: #3bbcb3;
     }
 
     .buy-button {
       display: inline-block;
+      margin-top: 20px;
       padding: 12px 24px;
       background-color: #4ecdc4;
       color: #111;
-      text-decoration: none;
+      border: none;
       border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
       font-weight: bold;
-      margin-bottom: 2rem;
-      transition: background-color 0.3s;
+      transition: background-color 0.2s ease;
+      text-decoration: none;
     }
 
     .buy-button:hover {
-      background-color: #3ab7ae;
-    }
-
-    .specs {
-      margin-bottom: 2rem;
-    }
-
-    .specs h2 {
-      margin-top: 0;
-    }
-
-    .specs ul {
-      padding-left: 1.2rem;
-    }
-
-    .benchmark-link {
-      display: inline-block;
-      color: #4ecdc4;
-      text-decoration: none;
-      margin-bottom: 2rem;
-    }
-
-    .benchmark-link:hover {
-      text-decoration: underline;
+      background-color: #3bbcb3;
     }
 
     @media (max-width: 768px) {
-      .header h1 {
-        font-size: 2rem;
-      }
-      
-      .pc-content {
+      .container {
         flex-direction: column;
+        align-items: center;
       }
       
-      .pc-image {
+      .image-carousel img {
         max-height: 300px;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="header">
-      <h1>❄️ FrostByte X</h1>
+    <div class="left">
+      <div class="image-carousel">
+        <button onclick="prevImage()">←</button>
+        <img id="pcImage" src="images/frostbyte1.jpg" alt="FrostByte X">
+        <button onclick="nextImage()">→</button>
+      </div>
     </div>
 
-    <div class="pc-content">
-      <div class="image-section">
-        <img src="images/frostbyte1.jpg" alt="FrostByte X" class="pc-image" />
-      </div>
+    <div class="right">
+      <h1>❄️ FrostByte X - €750</h1>
+      <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">Buy Now</a>
+      <div class="short-desc" onclick="scrollToDesc()">Click to reveal specs ↓</div>
+    </div>
+  </div>
 
-      <div class="details-section">
-        <div class="description-container">
-          <p>The FrostByte X is a budget-friendly gaming PC that delivers solid 1080p performance for esports and modern games.</p>
-          <p id="moreDesc" class="hidden">
-            With its Intel Core i3-12100F and GTX 1660 Super combo, this system handles popular titles like Fortnite, Valorant, 
-            and Apex Legends with ease. The 512GB NVMe SSD ensures fast boot times and quick game loading, while the 16GB of 
-            DDR4 RAM provides smooth multitasking. Perfect for gamers looking for great performance without breaking the bank.
-          </p>
-          <span class="description-toggle" onclick="toggleDescription()">View full description</span>
-        </div>
+  <div id="full-desc" class="container">
+    <p>The FrostByte X is a budget-friendly gaming PC that delivers solid 1080p performance for esports and modern games. Perfect for gamers looking for great performance without breaking the bank.</p>
 
-        <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">Buy Now - €750</a>
+    <div id="specs">
+      <h2>Specifications:</h2>
+      <ul>
+        <li>CPU: Intel Core i3-12100F</li>
+        <li>GPU: NVIDIA GTX 1660 Super OC</li>
+        <li>RAM: 16GB DDR4 3200MHz</li>
+        <li>Storage: 512GB NVMe SSD</li>
+        <li>Motherboard: Asrock B660M PRO RS</li>
+        <li>PSU: Corsair 650W Full Modular 80+ Bronze</li>
+        <li>Cooler: Intel Stock Cooler</li>
+        <li>Case: Deepcool CG530</li>
+        <li>OS: Windows 11 Activated</li>
+        <li>Pre-installed: Discord, Steam, Chrome + 1 app of choice</li>
+      </ul>
+    </div>
 
-        <div class="specs">
-          <h2>Specifications</h2>
-          <ul>
-            <li>Intel Core i3-12100F</li>
-            <li>NVIDIA GTX 1660 Super OC</li>
-            <li>16GB DDR4 3200MHz RAM</li>
-            <li>512GB NVMe SSD</li>
-            <li>Asrock B660M PRO RS Motherboard</li>
-            <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
-            <li>Intel Stock Cooler</li>
-            <li>Deepcool CG530 Case</li>
-            <li>Windows 11 Activated</li>
-            <li>Pre-installed: Discord, Steam, Chrome + 1 app of choice</li>
-          </ul>
-        </div>
-
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="benchmark-link" target="_blank">View Benchmarks →</a>
-      </div>
+    <div id="benchmarks">
+      <h2>Performance</h2>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="benchmark-btn" target="_blank">View Benchmarks</a>
     </div>
   </div>
 
   <script>
-    function toggleDescription() {
-      const more = document.getElementById('moreDesc');
-      const toggle = document.querySelector('.description-toggle');
-      more.classList.toggle('hidden');
-      toggle.textContent = more.classList.contains('hidden') ? 'View full description' : 'Hide description';
+    const imageList = [
+      "images/frostbyte1.jpg",
+      "images/frostbyte2.jpg",
+      "images/frostbyte3.jpg"
+    ];
+
+    let currentIndex = 0;
+    const pcImage = document.getElementById("pcImage");
+
+    function showImage(index) {
+      pcImage.src = imageList[index];
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      showImage(currentIndex);
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % imageList.length;
+      showImage(currentIndex);
+    }
+
+    function scrollToDesc() {
+      const desc = document.getElementById("full-desc");
+      desc.style.display = "block";
+      desc.scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </body>
