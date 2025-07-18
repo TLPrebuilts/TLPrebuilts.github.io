@@ -2,219 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FrostByte X</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
       background: #111;
-      color: #eee;
-      scroll-behavior: smooth;
+      color: white;
     }
-
     .container {
-      max-width: 1200px;
-      margin: 1rem auto;
-      padding: 1rem;
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
     }
-
     h1 {
       text-align: center;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #4ecdc4;
+      margin-bottom: 0.5rem;
     }
-
-    .pc-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
+    .description {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
     }
-
-    .image-slider {
+    .carousel {
       position: relative;
-      width: 100%;
-      max-width: 400px;
+      max-width: 600px;
+      margin: 2rem auto;
     }
-
-    .slider-image {
+    .carousel img {
       width: 100%;
       border-radius: 10px;
-      display: none;
     }
-
-    .slider-image.active {
-      display: block;
-    }
-
     .arrow {
       position: absolute;
-      top: 50%;
+      top: 45%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
       font-size: 2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
       padding: 0.5rem 1rem;
       cursor: pointer;
-      z-index: 1;
+      border-radius: 50%;
+      z-index: 2;
+      user-select: none;
     }
-
+    .arrow:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
     .arrow.left {
       left: 10px;
     }
-
     .arrow.right {
       right: 10px;
     }
-
-    .details {
-      flex: 1;
-    }
-
-    .description {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.6s ease;
-      margin-top: 1rem;
-    }
-
-    .description.visible {
-      max-height: 500px;
-    }
-
-    .show-description {
-      margin-top: 1rem;
-      background: #4ecdc4;
-      color: black;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
     .specs {
-      margin-top: 3rem;
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 2rem;
     }
-
     .specs ul {
       list-style: none;
       padding: 0;
+      line-height: 1.8;
     }
-
-    .specs li {
-      background: #222;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+    .buy-button,
+    .benchmark-button {
+      display: inline-block;
+      margin: 1.5rem auto;
+      padding: 0.8rem 1.6rem;
+      background-color: #4ecdc4;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
     }
-
+    .buy-button:hover,
+    .benchmark-button:hover {
+      background-color: #38a69b;
+    }
     .benchmarks {
-      margin-top: 5rem;
+      margin-top: 100px;
       text-align: center;
     }
-
-    .benchmarks button {
-      background: #ff0055;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      .pc-section {
-        flex-direction: column;
-        text-align: center;
+    @media (max-width: 700px) {
+      .carousel {
+        width: 100%;
       }
-
       .arrow {
         font-size: 1.5rem;
-        padding: 0.3rem 0.6rem;
-      }
-
-      h1 {
-        font-size: 2rem;
+        padding: 0.4rem 0.8rem;
       }
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h1>~ FrostByte X - €750</h1>
+    <h1>FrostByte X - €750</h1>
+    <p class="description">
+      FrostByte X is a powerful custom-built PC tailored for gamers and creators. Whether you're diving into AAA titles or editing high-res video content, this build handles it all smoothly. Comes fully setup with pre-installed apps and ready-to-play hardware.
+    </p>
+    <a href="mailto:tlprebuilts@gmail.com" class="buy-button">Buy Now</a>
 
-    <div class="pc-section">
-      <div class="image-slider">
-        <img src="images/frostbyte1.jpg" class="slider-image active" />
-        <img src="images/frostbyte2.jpg" class="slider-image" />
-        <img src="images/frostbyte3.jpg" class="slider-image" />
-
-        <button class="arrow left" onclick="changeSlide(-1)">‹</button>
-        <button class="arrow right" onclick="changeSlide(1)">›</button>
-      </div>
-
-      <div class="details">
-        <p><strong>High performance, clean looks.</strong> Click to read more.</p>
-        <button class="show-description" onclick="toggleDescription()">Show Full Description</button>
-        <div id="description" class="description">
-          <p>
-                  FrostByte X is a solid custom PC featuring an Intel Core i3-12100F and GTX 1660 SUPER OC dual-fan GPU, ideal for gaming and everyday tasks. It comes with 16GB DDR4 3200MHz RAM, a speedy 512GB NVMe SSD, and reliable cooling in a sleek black Deepcool CG530 case. Perfectly balanced for power and value.
-
-          </p>
-        </div>
-      </div>
+    <div class="carousel">
+      <span class="arrow left" onclick="changeImage(-1)">❮</span>
+      <img id="carouselImage" src="images/frostbyte1.jpg" alt="FrostByte X Photo">
+      <span class="arrow right" onclick="changeImage(1)">❯</span>
     </div>
 
     <div class="specs">
       <h2>Specifications</h2>
       <ul>
         <li>Intel Core i3-12100F</li>
-        <li>GTX 1660 Super OC 6GB Dual Fan</li>
+        <li>GTX 1660 Super OC 6GB Dual Fan GPU</li>
         <li>16GB DDR4 3200MHz RAM</li>
         <li>512GB NVMe SSD</li>
-        <li>Intel Stock Cooler</li>
+        <li>Intel CPU Cooler</li>
         <li>ASRock B660M PRO RS Motherboard</li>
-        <li>Corsair 650W 80+ Bronze PSU (Fully Modular)</li>
-        <li>DeepCool CG530 Mid Tower (Black)</li>
-        <li>Windows 11 Pro + Chrome, Discord, Steam, 1 Custom App</li>
+        <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
+        <li>Deepcool CG530 Midi Tower (Black)</li>
+        <li>Windows 11 Pro with Chrome, Discord, Steam & 1 app of your choice pre-installed</li>
       </ul>
     </div>
 
-    <div class="benchmarks">
-      <h2>See Benchmarks</h2>
-      <button onclick="window.open('https://www.youtube.com/watch?v=NlOZqLPP-ns.com', '_blank')">Watch Benchmarks</button>
+    <div class="benchmarks" id="benchmarks">
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="benchmark-button">See Benchmarks</a>
     </div>
   </div>
 
   <script>
-    let currentSlide = 0;
-    const images = document.querySelectorAll('.slider-image');
+    const images = ["images/frostbyte1.jpg", "images/frostbyte2.jpg", "images/frostbyte3.jpg"];
+    let current = 0;
 
-    function showSlide(index) {
-      images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-      });
-    }
-
-    function changeSlide(direction) {
-      currentSlide += direction;
-      if (currentSlide < 0) currentSlide = images.length - 1;
-      if (currentSlide >= images.length) currentSlide = 0;
-      showSlide(currentSlide);
-    }
-
-    function toggleDescription() {
-      const desc = document.getElementById('description');
-      desc.classList.toggle('visible');
+    function changeImage(direction) {
+      current += direction;
+      if (current < 0) current = images.length - 1;
+      if (current >= images.length) current = 0;
+      document.getElementById("carouselImage").src = images[current];
     }
   </script>
-
 </body>
 </html>
