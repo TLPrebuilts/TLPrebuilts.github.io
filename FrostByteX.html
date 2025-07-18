@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FrostByte X</title>
+  <title>FrostByte X | TLPrebuilts</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -94,14 +94,14 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding-top: 60px; /* Increased padding */
+      padding-top: 60px;
     }
     
     .price-tag {
       color: #4ecdc4;
-      font-size: 3.5rem; /* Increased font size */
+      font-size: 3.5rem;
       font-weight: bold;
-      margin-bottom: 40px; /* Increased margin */
+      margin-bottom: 40px;
       padding-left: 20px;
       letter-spacing: 1px;
       line-height: 1.1;
@@ -110,7 +110,7 @@
     .price-tag::after {
       content: "";
       display: block;
-      height: 20px; /* Added space after price */
+      height: 20px;
     }
     
     .action-buttons {
@@ -199,19 +199,21 @@
     .cart-notification {
       position: fixed;
       top: 20px;
-      right: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
       background: #4ecdc4;
       color: #111;
       padding: 15px 25px;
       border-radius: 8px;
       font-weight: 600;
-      transform: translateX(200%);
       transition: transform 0.3s ease;
       z-index: 1000;
+      width: max-content;
+      max-width: 90%;
     }
     
     .cart-notification.show {
-      transform: translateX(0);
+      transform: translateX(-50%) translateY(0);
     }
     
     .cart-icon {
@@ -219,12 +221,8 @@
       top: 30px;
       right: 30px;
       font-size: 1.8rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    
-    .cart-icon:hover {
-      transform: scale(1.1);
+      color: #4ecdc4;
+      text-decoration: none;
     }
     
     .cart-count {
@@ -261,7 +259,7 @@
       }
       
       .price-tag {
-        font-size: 2.8rem; /* Adjusted for mobile */
+        font-size: 2.8rem;
         padding-left: 0;
         text-align: center;
       }
@@ -282,6 +280,7 @@
   <div class="cart-notification" id="cartNotification">Added to Cart!</div>
   
   <div class="header">
+    <a href="index.html" style="position: absolute; left: 30px; top: 30px; font-size: 1.8rem; color: #4ecdc4; text-decoration: none;">←</a>
     <h1>❄️ FROSTBYTE X</h1>
     <a href="cart.html" class="cart-icon">
       🛒
@@ -368,13 +367,8 @@
     const cartNotification = document.getElementById('cartNotification');
     const cartCount = document.getElementById('cartCount');
     let isTransitioning = false;
-    let cartItems = 0;
-
-    // Load cart items from localStorage
-    if (localStorage.getItem('cartItems')) {
-      cartItems = parseInt(localStorage.getItem('cartItems'));
-      cartCount.textContent = cartItems;
-    }
+    let cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
+    cartCount.textContent = cartItems;
 
     function showImage(index) {
       if (isTransitioning) return;

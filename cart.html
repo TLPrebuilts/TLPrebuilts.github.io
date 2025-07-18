@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Cart - FrostByte X</title>
+  <title>Your Cart | TLPrebuilts</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -60,6 +60,7 @@
       align-items: center;
       padding: 20px;
       border-bottom: 1px solid #333;
+      transition: all 0.3s ease;
     }
     
     .cart-item:last-child {
@@ -152,6 +153,16 @@
       font-weight: bold;
     }
     
+    /* Removal animation */
+    @keyframes itemRemoved {
+      0% { opacity: 1; transform: translateX(0); }
+      100% { opacity: 0; transform: translateX(-100px); }
+    }
+    
+    .item-removing {
+      animation: itemRemoved 0.3s forwards;
+    }
+    
     @media (max-width: 768px) {
       .cart-item {
         flex-direction: column;
@@ -202,46 +213,55 @@
     document.addEventListener('DOMContentLoaded', function() {
       const cartContainer = document.getElementById('cartContainer');
       const totalAmount = document.getElementById('totalAmount');
+      const checkoutSection = document.querySelector('.checkout-section');
+      const cartTotal = document.querySelector('.cart-total');
       
-      // Check if there are items in the cart
-      const cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
-      
-      if (cartItems > 0) {
-        // Display the FrostByte X in cart
-        const price = 750;
-        const totalPrice = price * cartItems;
+      function updateCartDisplay() {
+        const cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
         
-        cartContainer.innerHTML = `
-          <div class="cart-item">
-            <img src="images/frostbyte1.jpg" alt="FrostByte X" class="cart-item-image">
-            <div class="cart-item-details">
-              <div class="cart-item-title">FrostByte X</div>
-              <div class="cart-item-price">€${price}</div>
-              <div class="cart-item-actions">
-                <button class="cart-btn remove-btn" id="removeItem">REMOVE</button>
+        if (cartItems > 0) {
+          const price = 750;
+          const totalPrice = price * cartItems;
+          
+          cartContainer.innerHTML = `
+            <div class="cart-item" id="cartItem">
+              <img src="images/frostbyte1.jpg" alt="FrostByte X" class="cart-item-image">
+              <div class="cart-item-details">
+                <div class="cart-item-title">FrostByte X</div>
+                <div class="cart-item-price">€${price} × ${cartItems}</div>
+                <div class="cart-item-actions">
+                  <button class="cart-btn remove-btn" id="removeItem">REMOVE</button>
+                </div>
               </div>
             </div>
-          </div>
-        `;
-        
-        totalAmount.textContent = `€${totalPrice}`;
-        
-        // Add event listener for remove button
-        document.getElementById('removeItem').addEventListener('click', function() {
-          localStorage.setItem('cartItems', '0');
-          window.location.href = 'index.html';
-        });
-      } else {
-        // Cart is empty
-        cartContainer.innerHTML = `
-          <div class="empty-cart">
-            Your cart is empty<br><br>
-            <a href="index.html" style="color: #4ecdc4;">← Back to products</a>
-          </div>
-        `;
-        document.querySelector('.cart-total').style.display = 'none';
-        document.querySelector('.checkout-section').style.display = 'none';
+          `;
+          
+          totalAmount.textContent = `€${totalPrice}`;
+          cartTotal.style.display = 'block';
+          checkoutSection.style.display = 'flex';
+          
+          document.getElementById('removeItem').addEventListener('click', function() {
+            const cartItem = document.getElementById('cartItem');
+            cartItem.classList.add('item-removing');
+            
+            setTimeout(() => {
+              localStorage.setItem('cartItems', '0');
+              updateCartDisplay();
+            }, 300);
+          });
+        } else {
+          cartContainer.innerHTML = `
+            <div class="empty-cart">
+              Your cart is empty<br><br>
+              <a href="index.html" style="color: #4ecdc4;">← Back to products</a>
+            </div>
+          `;
+          cartTotal.style.display = 'none';
+          checkoutSection.style.display = 'none';
+        }
       }
+      
+      updateCartDisplay();
     });
   </script>
 </body>
