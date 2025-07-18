@@ -70,59 +70,69 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
-    /* Toggle Button */
-    .short-desc {
+    /* Toggle Button - MOVED BACK TO ORIGINAL POSITION */
+    .specs-toggle {
       cursor: pointer;
       font-weight: bold;
       color: white;
-      margin: 1rem 0;
+      margin: 2rem auto;
       padding: 0.8rem 1.5rem;
       background: linear-gradient(135deg, #4ecdc4 0%, #3bbcb3 100%);
       border-radius: 50px;
-      display: inline-block;
+      display: block;
       font-size: 1rem;
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
       border: none;
+      text-align: center;
+      width: fit-content;
     }
 
-    /* Components Section (Top) */
-    #components {
-      margin-top: 40px;
+    /* Full-width specs grid */
+    #specs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
-      transition: all 0.4s ease;
+      width: 100%;
+      margin: 0 auto;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s ease;
     }
 
-    .component-box {
+    #specs-grid.visible {
+      opacity: 1;
+      max-height: 2000px;
+      margin: 2rem auto;
+    }
+
+    .spec-box {
       background-color: #1a1a1a;
       border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       border-left: 4px solid #4ecdc4;
       transition: all 0.3s ease;
-      opacity: 0;
       transform: translateY(20px);
     }
 
-    #full-desc.visible .component-box {
-      opacity: 1;
+    #specs-grid.visible .spec-box {
       transform: translateY(0);
     }
 
-    .component-box:hover {
+    .spec-box:hover {
       transform: translateY(-5px) !important;
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
-    .component-box li {
+    .spec-box li {
       list-style: none;
       margin: 0.8rem 0;
       font-size: 1.1rem;
     }
 
-    .component-box li:first-child {
+    .spec-box li:first-child {
       font-weight: bold;
       color: #4ecdc4;
       font-size: 1.2rem;
@@ -131,37 +141,34 @@
       padding-bottom: 0.5rem;
     }
 
-    /* Benchmarks Section (Lower) */
-    #benchmarks {
-      margin-top: 60px;
+    /* Centered benchmark button */
+    .benchmark-section {
       text-align: center;
-      transition: all 0.4s ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    #full-desc.visible #benchmarks {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.2s;
-    }
-
-    /* Smooth Specs Toggle */
-    #full-desc {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
-      opacity: 0;
+      margin: 3rem auto;
       width: 100%;
+      opacity: 0;
+      transition: all 0.5s ease;
     }
 
-    #full-desc.visible {
-      max-height: 2000px;
+    #specs-grid.visible ~ .benchmark-section {
       opacity: 1;
-      margin-top: 30px;
     }
 
-    /* Buy Button */
+    .benchmark-btn {
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #4ecdc4 0%, #3bbcb3 100%);
+      color: #111;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+    }
+
     .buy-button {
       font-size: 1.5rem;
       padding: 1.2rem 3rem;
@@ -176,11 +183,6 @@
       text-decoration: none;
       display: inline-block;
       box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
-    }
-
-    .buy-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -201,10 +203,6 @@
       .image-carousel img {
         max-height: 350px;
       }
-      
-      #components {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
@@ -223,58 +221,57 @@
       <h1>❄️ FROSTBYTE X - €750</h1>
       <p>The FrostByte X delivers exceptional 1080p gaming performance with its powerful GTX 1660 Super and efficient Intel Core i3-12100F combo. Perfect for esports and modern AAA titles at high settings.</p>
       <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
-      <button class="short-desc" onclick="toggleSpecs()">▼ SHOW COMPONENTS ▼</button>
     </div>
-  </div>
 
-  <div id="full-desc" class="container">
-    <!-- COMPONENTS AT THE TOP -->
-    <div id="components">
-      <div class="component-box">
+    <!-- SPECS TOGGLE BUTTON - NOW BELOW MAIN CONTENT -->
+    <button class="specs-toggle" onclick="toggleSpecs()">▼ SHOW SPECIFICATIONS ▼</button>
+
+    <!-- FULL-WIDTH SPECS GRID -->
+    <div id="specs-grid">
+      <div class="spec-box">
         <li>PROCESSOR</li>
         <li>Intel Core i3-12100F</li>
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>GRAPHICS CARD</li>
         <li>NVIDIA GTX 1660 Super OC 6GB</li>
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>MEMORY</li>
         <li>16GB DDR4 3200MHz</li>
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>STORAGE</li>
         <li>512GB NVMe SSD</li>
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>MOTHERBOARD</li>
         <li>Asrock B660M PRO RS</li>  
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>POWER SUPPLY</li>
         <li>Corsair 650W Full Modular 80+ Bronze</li>
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>COOLING</li>
         <li>Intel Stock Cooler</li>
       </div>
       
-      <div class="component-box">
+      <div class="spec-box">
         <li>CASE</li>
         <li>Deepcool CG530</li>
       </div>
     </div>
 
-    <!-- BENCHMARKS LOWER DOWN -->
-    <div id="benchmarks">
-      <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">PERFORMANCE METRICS</h2>
-      <a href="#" class="buy-button" target="_blank">VIEW BENCHMARK RESULTS</a>
+    <!-- CENTERED BENCHMARK BUTTON -->
+    <div class="benchmark-section">
+      <a href="#" class="benchmark-btn" target="_blank">VIEW BENCHMARK RESULTS</a>
     </div>
   </div>
 
@@ -306,20 +303,20 @@
       showImage(currentIndex);
     }
 
-    // Toggle Components
+    // Toggle Specs
     function toggleSpecs() {
-      const desc = document.getElementById("full-desc");
-      const toggleBtn = document.querySelector('.short-desc');
+      const specs = document.getElementById("specs-grid");
+      const toggleBtn = document.querySelector('.specs-toggle');
       
-      desc.classList.toggle('visible');
+      specs.classList.toggle('visible');
       
-      if (desc.classList.contains('visible')) {
-        toggleBtn.textContent = "▲ HIDE COMPONENTS ▲";
+      if (specs.classList.contains('visible')) {
+        toggleBtn.textContent = "▲ HIDE SPECIFICATIONS ▲";
         setTimeout(() => {
-          desc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          specs.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
       } else {
-        toggleBtn.textContent = "▼ SHOW COMPONENTS ▼";
+        toggleBtn.textContent = "▼ SHOW SPECIFICATIONS ▼";
       }
     }
 
