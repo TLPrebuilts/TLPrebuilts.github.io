@@ -3,148 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FrostByte X</title>
+  <title>FrostByte X - TLPrebuilts</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
+      background: #f4f4f4;
     }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    .description {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .carousel {
-      position: relative;
-      max-width: 600px;
-      margin: 2rem auto;
-    }
-    .carousel img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .arrow {
-      position: absolute;
-      top: 45%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      color: white;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 50%;
-      z-index: 2;
-      user-select: none;
-    }
-    .arrow:hover {
-      background: rgba(0, 0, 0, 0.7);
-    }
-    .arrow.left {
-      left: 10px;
-    }
-    .arrow.right {
-      right: 10px;
-    }
-    .specs {
+
+    header {
       background: #222;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-top: 2rem;
+      color: white;
+      padding: 2rem;
+      text-align: center;
     }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      gap: 2rem;
+    }
+
+    .pc-image {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 8px;
+    }
+
+    .pc-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .short-desc {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .buy-button {
+      background-color: #4ecdc4;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    .toggle-btn {
+      margin-top: 1rem;
+      background-color: transparent;
+      border: none;
+      color: #4ecdc4;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .full-description {
+      display: none;
+      margin-top: 1rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      transition: max-height 0.5s ease;
+    }
+
+    .specs {
+      margin: 3rem auto 0;
+      max-width: 1000px;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .specs h3 {
+      margin-top: 0;
+    }
+
     .specs ul {
       list-style: none;
-      padding: 0;
-      line-height: 1.8;
+      padding-left: 0;
     }
-    .buy-button,
-    .benchmark-button {
-      display: inline-block;
-      margin: 1.5rem auto;
-      padding: 0.8rem 1.6rem;
-      background-color: #4ecdc4;
-      color: black;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      text-decoration: none;
+
+    .specs li {
+      margin-bottom: 0.5rem;
     }
-    .buy-button:hover,
-    .benchmark-button:hover {
-      background-color: #38a69b;
-    }
+
     .benchmarks {
-      margin-top: 100px;
       text-align: center;
+      margin: 4rem 0;
     }
-    @media (max-width: 700px) {
-      .carousel {
-        width: 100%;
+
+    .benchmark-button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #222;
+      color: white;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
       }
-      .arrow {
-        font-size: 1.5rem;
-        padding: 0.4rem 0.8rem;
+
+      .pc-image {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .pc-info {
+        align-items: center;
+        text-align: center;
+      }
+
+      .buy-button, .toggle-btn {
+        align-self: center;
       }
     }
   </style>
 </head>
 <body>
+
+  <header>
+    <h1>FrostByte X - €75</h1>
+  </header>
+
   <div class="container">
-    <h1>FrostByte X - €750</h1>
-    <p class="description">
-      FrostByte X is a powerful custom-built PC tailored for gamers and creators. Whether you're diving into AAA titles or editing high-res video content, this build handles it all smoothly. Comes fully setup with pre-installed apps and ready-to-play hardware.
-    </p>
-    <a href="mailto:tlprebuilts@gmail.com" class="buy-button">Buy Now</a>
-
-    <div class="carousel">
-      <span class="arrow left" onclick="changeImage(-1)">❮</span>
-      <img id="carouselImage" src="images/frostbyte1.jpg" alt="FrostByte X Photo">
-      <span class="arrow right" onclick="changeImage(1)">❯</span>
-    </div>
-
-    <div class="specs">
-      <h2>Specifications</h2>
-      <ul>
-        <li>Intel Core i3-12100F</li>
-        <li>GTX 1660 Super OC 6GB Dual Fan GPU</li>
-        <li>16GB DDR4 3200MHz RAM</li>
-        <li>512GB NVMe SSD</li>
-        <li>Intel CPU Cooler</li>
-        <li>ASRock B660M PRO RS Motherboard</li>
-        <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
-        <li>Deepcool CG530 Midi Tower (Black)</li>
-        <li>Windows 11 Pro with Chrome, Discord, Steam & 1 app of your choice pre-installed</li>
-      </ul>
-    </div>
-
-    <div class="benchmarks" id="benchmarks">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="benchmark-button">See Benchmarks</a>
+    <img src="images/frostbyte1.jpg" alt="FrostByte X" class="pc-image" />
+    <div class="pc-info">
+      <div class="short-desc">
+        Budget-friendly prebuilt with solid 1080p gaming performance, ideal for entry-level creators and competitive gamers.
+      </div>
+      <button class="buy-button">Buy Now</button>
+      <button class="toggle-btn" onclick="toggleDescription()">View Full Description</button>
+      <div class="full-description" id="description">
+        FrostByte X is built to deliver reliable performance for everyday gaming and content creation. Powered by Intel’s 12th Gen Core i3 and paired with the GTX 1660 Super, it runs most modern games at 1080p high settings. With fast NVMe storage and 16GB of RAM, multitasking and loading times are a breeze.
+      </div>
     </div>
   </div>
 
-  <script>
-    const images = ["images/frostbyte1.jpg", "images/frostbyte2.jpg", "images/frostbyte3.jpg"];
-    let current = 0;
+  <div class="specs">
+    <h3>Specifications</h3>
+    <ul>
+      <li>Intel Core i3-12100F</li>
+      <li>GTX 1660 Super OC 6GB Dual Fan GPU</li>
+      <li>16GB DDR4 3200MHz RAM</li>
+      <li>512GB NVMe SSD</li>
+      <li>Intel Stock Cooler</li>
+      <li>ASRock B660M PRO RS Motherboard</li>
+      <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
+      <li>Deepcool CG530 Mid Tower (Black)</li>
+      <li>Windows 11 Pro pre-installed + Chrome, Discord, Steam + 1 app of your choice</li>
+    </ul>
+  </div>
 
-    function changeImage(direction) {
-      current += direction;
-      if (current < 0) current = images.length - 1;
-      if (current >= images.length) current = 0;
-      document.getElementById("carouselImage").src = images[current];
+  <div class="benchmarks">
+    <button class="benchmark-button" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">View Benchmarks</button>
+  </div>
+
+  <footer>
+    <p>© 2025 TLPrebuilts. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDescription() {
+      const desc = document.getElementById('description');
+      desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
     }
   </script>
+
 </body>
 </html>
