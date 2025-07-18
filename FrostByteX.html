@@ -9,128 +9,175 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
       background-color: #111;
       color: white;
+      min-height: 100vh;
     }
+    
+    .header {
+      text-align: center;
+      padding: 30px 0 0;
+    }
+    
+    h1 {
+      color: #4ecdc4;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 20px;
     }
+    
     .pc-showcase {
       display: flex;
       flex-wrap: wrap;
-      gap: 30px;
-      margin-bottom: 40px;
+      gap: 40px;
+      margin-top: 20px;
     }
+    
     .image-section {
       flex: 1;
       min-width: 300px;
     }
+    
     .image-container {
       position: relative;
       overflow: hidden;
       border-radius: 12px;
-      height: 380px;
+      height: 500px;
     }
+    
     .pc-image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.5s ease;
     }
+    
     .image-nav {
       display: flex;
       justify-content: center;
       gap: 15px;
       margin-top: 20px;
     }
+    
     .nav-btn {
-      width: 45px;
-      height: 45px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background: #4ecdc4;
       color: #111;
       border: none;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       cursor: pointer;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+    
     .info-section {
       flex: 1;
       min-width: 300px;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
+    
     .price-tag {
       background: #4ecdc4;
       color: #111;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: bold;
       padding: 15px 25px;
       border-radius: 10px;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      text-align: center;
     }
+    
     .action-buttons {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-top: 30px;
     }
+    
     .btn {
-      padding: 14px 25px;
-      font-size: 1.1rem;
+      padding: 16px 25px;
+      font-size: 1.2rem;
       font-weight: 600;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       transition: all 0.3s ease;
+      text-align: center;
     }
+    
     .btn-primary {
       background: #4ecdc4;
       color: #111;
     }
+    
     .btn-secondary {
       background: transparent;
       color: #4ecdc4;
       border: 2px solid #4ecdc4;
     }
+    
     .specs-section {
       background: #1a1a1a;
       border-radius: 15px;
       padding: 30px;
-      margin-top: 40px;
+      margin-top: 50px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
     }
+    
+    .specs-section.visible {
+      max-height: 2000px;
+    }
+    
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
+    
     .spec-card {
       background: #222;
       border-radius: 12px;
       padding: 20px;
       border-left: 4px solid #4ecdc4;
     }
+    
     .benchmark-section {
       text-align: center;
       margin-top: 40px;
     }
+    
     @media (max-width: 768px) {
       .pc-showcase {
         flex-direction: column;
       }
+      
       .image-container {
-        height: 300px;
+        height: 350px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
       }
     }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h1>❄️ FROSTBYTE X</h1>
+  </div>
+  
   <div class="container">
     <div class="pc-showcase">
       <div class="image-section">
@@ -148,7 +195,7 @@
         
         <div class="action-buttons">
           <button class="btn btn-primary">BUY NOW</button>
-          <button class="btn btn-secondary" onclick="document.getElementById('specs').scrollIntoView()">SHOW SPECIFICATIONS</button>
+          <button class="btn btn-secondary" id="toggleSpecs">SHOW SPECIFICATIONS</button>
         </div>
       </div>
     </div>
@@ -156,35 +203,35 @@
     <div class="specs-section" id="specs">
       <div class="specs-grid">
         <div class="spec-card">
-          <div>PROCESSOR</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">PROCESSOR</div>
           <div>Intel Core i3-12100F</div>
         </div>
         <div class="spec-card">
-          <div>GRAPHICS CARD</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">GRAPHICS CARD</div>
           <div>NVIDIA GTX 1660 Super OC 6GB</div>
         </div>
         <div class="spec-card">
-          <div>MEMORY</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">MEMORY</div>
           <div>16GB DDR4 3200MHz</div>
         </div>
         <div class="spec-card">
-          <div>STORAGE</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">STORAGE</div>
           <div>512GB NVMe SSD</div>
         </div>
         <div class="spec-card">
-          <div>MOTHERBOARD</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">MOTHERBOARD</div>
           <div>Asrock B660M PRO RS</div>
         </div>
         <div class="spec-card">
-          <div>POWER SUPPLY</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">POWER SUPPLY</div>
           <div>Corsair 650W Full Modular 80+ Bronze</div>
         </div>
         <div class="spec-card">
-          <div>COOLING</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">COOLING</div>
           <div>Intel Stock Cooler</div>
         </div>
         <div class="spec-card">
-          <div>CASE</div>
+          <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">CASE</div>
           <div>Deepcool CG530</div>
         </div>
       </div>
@@ -203,6 +250,8 @@
     ];
     let currentIndex = 0;
     const pcImage = document.getElementById('pcImage');
+    const specsSection = document.getElementById('specs');
+    const toggleBtn = document.getElementById('toggleSpecs');
 
     function showImage(index) {
       pcImage.style.opacity = 0;
@@ -221,6 +270,20 @@
       currentIndex = (currentIndex + 1) % images.length;
       showImage(currentIndex);
     }
+
+    toggleBtn.addEventListener('click', function() {
+      specsSection.classList.toggle('visible');
+      if (specsSection.classList.contains('visible')) {
+        toggleBtn.textContent = 'HIDE SPECIFICATIONS';
+        setTimeout(() => {
+          specsSection.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      } else {
+        toggleBtn.textContent = 'SHOW SPECIFICATIONS';
+      }
+    });
+
+    showImage(0);
   </script>
 </body>
 </html>
