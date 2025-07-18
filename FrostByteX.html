@@ -92,7 +92,8 @@
       min-width: 300px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 40px;
     }
     
     .price-tag {
@@ -144,7 +145,7 @@
       background: rgba(78, 205, 196, 0.1);
     }
     
-    .specs-section {
+    .content-section {
       background: #1a1a1a;
       border-radius: 15px;
       padding: 0;
@@ -154,8 +155,8 @@
       transition: max-height 0.5s ease, padding 0.5s ease;
     }
     
-    .specs-section.visible {
-      max-height: 1000px;
+    .content-section.visible {
+      max-height: 1200px;
       padding: 30px;
     }
     
@@ -173,8 +174,8 @@
     }
     
     .benchmark-section {
-      text-align: center;
       margin-top: 40px;
+      text-align: center;
     }
     
     @media (max-width: 768px) {
@@ -188,6 +189,10 @@
       
       h1 {
         font-size: 2.2rem;
+      }
+      
+      .info-section {
+        padding-top: 0;
       }
       
       .price-tag {
@@ -224,13 +229,13 @@
         <div class="price-tag">€750</div>
         
         <div class="action-buttons">
-          <a href="https://paypal.me/yourlink" class="btn btn-primary" target="_blank">BUY NOW</a>
-          <button class="btn btn-secondary" id="toggleSpecs">SHOW SPECIFICATIONS</button>
+          <a href="https://paypal.me/Treyplayz1" class="btn btn-primary" target="_blank">BUY NOW</a>
+          <button class="btn btn-secondary" id="toggleContent">SHOW SPECS</button>
         </div>
       </div>
     </div>
     
-    <div class="specs-section" id="specs">
+    <div class="content-section" id="content">
       <div class="specs-grid">
         <div class="spec-card">
           <div style="font-weight:bold;color:#4ecdc4;margin-bottom:10px;">PROCESSOR</div>
@@ -265,10 +270,10 @@
           <div>Deepcool CG530</div>
         </div>
       </div>
-    </div>
-    
-    <div class="benchmark-section">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary" target="_blank">VIEW BENCHMARK RESULTS</a>
+      
+      <div class="benchmark-section">
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary" target="_blank">VIEW BENCHMARK RESULTS</a>
+      </div>
     </div>
   </div>
 
@@ -280,8 +285,8 @@
     ];
     let currentIndex = 0;
     const pcImage = document.getElementById('pcImage');
-    const specsSection = document.getElementById('specs');
-    const toggleBtn = document.getElementById('toggleSpecs');
+    const contentSection = document.getElementById('content');
+    const toggleBtn = document.getElementById('toggleContent');
     let isTransitioning = false;
 
     function showImage(index) {
@@ -307,11 +312,11 @@
     }
 
     toggleBtn.addEventListener('click', function() {
-      specsSection.classList.toggle('visible');
-      if (specsSection.classList.contains('visible')) {
+      contentSection.classList.toggle('visible');
+      if (contentSection.classList.contains('visible')) {
         toggleBtn.textContent = 'HIDE SPECS';
         setTimeout(() => {
-          specsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          contentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
       } else {
         toggleBtn.textContent = 'SHOW SPECS';
