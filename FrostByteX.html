@@ -68,34 +68,31 @@
       margin-top: 0;
     }
 
-    /* Show Specs Button (Lower position) */
-    .specs-toggle {
-      cursor: pointer;
-      font-weight: bold;
-      color: #4ecdc4;
-      margin: 40px auto 20px;
-      text-decoration: underline;
-      text-align: center;
-      display: block;
-      width: 100%;
-      font-size: 1.1rem;
+    /* Right Side Buttons */
+    .right-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    /* Buy Button */
-    .buy-button {
-      display: block;
-      margin: 30px auto;
-      padding: 12px 24px;
+    .specs-toggle, .buy-button {
+      padding: 0.8rem 1.5rem;
       background-color: #4ecdc4;
       color: #111;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1.2rem;
       font-weight: bold;
       transition: all 0.3s ease;
       text-align: center;
       width: fit-content;
+    }
+
+    .specs-toggle {
+      background: transparent;
+      color: #4ecdc4;
+      text-decoration: underline;
     }
 
     .buy-button:hover {
@@ -105,56 +102,20 @@
 
     /* Full Description Section */
     #full-desc {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
-      opacity: 0;
+      display: none;
       width: 100%;
+      transition: opacity 0.5s ease;
     }
 
-    #full-desc.visible {
-      max-height: 2000px;
-      opacity: 1;
-      margin-top: 20px;
-    }
-
-    /* Boxed Specs Grid */
+    /* Original Bottom Section */
     #specs {
       margin-top: 30px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
     }
 
-    .spec-box {
-      background-color: #1a1a1a;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      border-left: 4px solid #4ecdc4;
-      transition: all 0.3s ease;
+    #specs ul {
+      padding-left: 1.2rem;
     }
 
-    .spec-box:hover {
-      transform: translateY(-5px);
-    }
-
-    .spec-box li {
-      list-style: none;
-      margin: 0.8rem 0;
-      padding-left: 0;
-    }
-
-    .spec-box li:first-child {
-      font-weight: bold;
-      color: #4ecdc4;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.5rem;
-    }
-
-    /* Benchmarks Section */
     #benchmarks {
       margin-top: 60px;
       text-align: center;
@@ -184,8 +145,8 @@
         align-items: center;
       }
       
-      #specs {
-        grid-template-columns: 1fr;
+      .right-buttons {
+        align-items: center;
       }
     }
   </style>
@@ -204,58 +165,29 @@
 
     <div class="right">
       <h1>FrostByte X - €750</h1>
-      <p style="text-align: center;">The FrostByte X delivers exceptional 1080p gaming performance</p>
+      <p>The FrostByte X delivers exceptional 1080p gaming performance</p>
+      
+      <div class="right-buttons">
+        <button class="specs-toggle" onclick="toggleSpecs()">▼ SHOW SPECIFICATIONS ▼</button>
+        <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
+      </div>
     </div>
   </div>
 
-  <!-- Show Specs Button (Lower position) -->
-  <button class="specs-toggle" onclick="toggleSpecs()">▼ SHOW SPECIFICATIONS ▼</button>
-
-  <!-- Buy Button -->
-  <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
-
-  <!-- Full Description Section -->
+  <!-- Original Bottom Section -->
   <div id="full-desc" class="container">
     <div id="specs">
-      <div class="spec-box">
-        <li>PROCESSOR</li>
-        <li>Intel Core i3-12100F</li>
-      </div>
-      
-      <div class="spec-box">
-        <li>GRAPHICS CARD</li>
-        <li>NVIDIA GTX 1660 Super OC 6GB</li>
-      </div>
-      
-      <div class="spec-box">
-        <li>MEMORY</li>
-        <li>16GB DDR4 3200MHz</li>
-      </div>
-      
-      <div class="spec-box">
-        <li>STORAGE</li>
-        <li>512GB NVMe SSD</li>
-      </div>
-      
-      <div class="spec-box">
-        <li>MOTHERBOARD</li>
-        <li>Asrock B660M PRO RS</li>  
-      </div>
-      
-      <div class="spec-box">
-        <li>POWER SUPPLY</li>
-        <li>Corsair 650W Full Modular 80+ Bronze</li>
-      </div>
-      
-      <div class="spec-box">
-        <li>COOLING</li>
-        <li>Intel Stock Cooler</li>
-      </div>
-      
-      <div class="spec-box">
-        <li>CASE</li>
-        <li>Deepcool CG530</li>
-      </div>
+      <h2>Specifications:</h2>
+      <ul>
+        <li>CPU: Intel Core i3-12100F</li>
+        <li>GPU: NVIDIA GTX 1660 Super OC 6GB</li>
+        <li>RAM: 16GB DDR4 3200MHz</li>
+        <li>Storage: 512GB NVMe SSD</li>
+        <li>Motherboard: Asrock B660M PRO RS</li>
+        <li>PSU: Corsair 650W Full Modular 80+ Bronze</li>
+        <li>Cooling: Intel Stock Cooler</li>
+        <li>Case: Deepcool CG530</li>
+      </ul>
     </div>
 
     <div id="benchmarks">
@@ -295,15 +227,15 @@
       const desc = document.getElementById("full-desc");
       const toggleBtn = document.querySelector('.specs-toggle');
       
-      desc.classList.toggle('visible');
-      
-      if (desc.classList.contains('visible')) {
+      if (desc.style.display === "block") {
+        desc.style.display = "none";
+        toggleBtn.textContent = "▼ SHOW SPECIFICATIONS ▼";
+      } else {
+        desc.style.display = "block";
         toggleBtn.textContent = "▲ HIDE SPECIFICATIONS ▲";
         setTimeout(() => {
           desc.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
-      } else {
-        toggleBtn.textContent = "▼ SHOW SPECIFICATIONS ▼";
       }
     }
 
