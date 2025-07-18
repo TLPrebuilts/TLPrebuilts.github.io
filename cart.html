@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - FrostByte X</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+      min-height: 100vh;
+    }
+    
+    .header {
+      text-align: center;
+      padding: 30px 0 0;
+      position: relative;
+    }
+    
+    h1 {
+      color: #4ecdc4;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .back-btn {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 1.8rem;
+      color: #4ecdc4;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    .cart-container {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 30px;
+    }
+    
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #333;
+    }
+    
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    
+    .cart-item-image {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-right: 30px;
+      background: #222;
+      border-radius: 8px;
+    }
+    
+    .cart-item-details {
+      flex: 1;
+    }
+    
+    .cart-item-title {
+      font-size: 1.5rem;
+      color: #4ecdc4;
+      margin-bottom: 10px;
+    }
+    
+    .cart-item-price {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .cart-item-actions {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .cart-btn {
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .remove-btn {
+      background: #ff4757;
+      color: white;
+    }
+    
+    .remove-btn:hover {
+      background: #ff6b81;
+    }
+    
+    .checkout-btn {
+      background: #4ecdc4;
+      color: #111;
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .checkout-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 50px 0;
+      font-size: 1.2rem;
+    }
+    
+    .checkout-section {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    
+    .cart-total {
+      text-align: right;
+      font-size: 1.8rem;
+      margin-top: 20px;
+      padding-right: 20px;
+    }
+    
+    .total-amount {
+      color: #4ecdc4;
+      font-weight: bold;
+    }
+    
+    @media (max-width: 768px) {
+      .cart-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .cart-item-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+      
+      .cart-item-actions {
+        justify-content: center;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .back-btn {
+        top: 20px;
+        left: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="index.html" class="back-btn">←</a>
+    <h1>YOUR CART</h1>
+  </div>
+  
+  <div class="container">
+    <div class="cart-container" id="cartContainer">
+      <!-- Cart items will be dynamically inserted here -->
+    </div>
+    
+    <div class="cart-total">
+      Total: <span class="total-amount" id="totalAmount">€0</span>
+    </div>
+    
+    <div class="checkout-section">
+      <a href="https://paypal.me/Treyplayz1" class="cart-btn checkout-btn" target="_blank">PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cartContainer = document.getElementById('cartContainer');
+      const totalAmount = document.getElementById('totalAmount');
+      
+      // Check if there are items in the cart
+      const cartItems = localStorage.getItem('cartItems') ? parseInt(localStorage.getItem('cartItems')) : 0;
+      
+      if (cartItems > 0) {
+        // Display the FrostByte X in cart
+        const price = 750;
+        const totalPrice = price * cartItems;
+        
+        cartContainer.innerHTML = `
+          <div class="cart-item">
+            <img src="images/frostbyte1.jpg" alt="FrostByte X" class="cart-item-image">
+            <div class="cart-item-details">
+              <div class="cart-item-title">FrostByte X</div>
+              <div class="cart-item-price">€${price}</div>
+              <div class="cart-item-actions">
+                <button class="cart-btn remove-btn" id="removeItem">REMOVE</button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        totalAmount.textContent = `€${totalPrice}`;
+        
+        // Add event listener for remove button
+        document.getElementById('removeItem').addEventListener('click', function() {
+          localStorage.setItem('cartItems', '0');
+          window.location.href = 'index.html';
+        });
+      } else {
+        // Cart is empty
+        cartContainer.innerHTML = `
+          <div class="empty-cart">
+            Your cart is empty<br><br>
+            <a href="index.html" style="color: #4ecdc4;">← Back to products</a>
+          </div>
+        `;
+        document.querySelector('.cart-total').style.display = 'none';
+        document.querySelector('.checkout-section').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

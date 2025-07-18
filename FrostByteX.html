@@ -17,6 +17,7 @@
     .header {
       text-align: center;
       padding: 30px 0 0;
+      position: relative;
     }
     
     h1 {
@@ -93,16 +94,23 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding-top: 40px;
+      padding-top: 60px; /* Increased padding */
     }
     
     .price-tag {
       color: #4ecdc4;
-      font-size: 3rem;
+      font-size: 3.5rem; /* Increased font size */
       font-weight: bold;
-      margin-bottom: 30px;
+      margin-bottom: 40px; /* Increased margin */
       padding-left: 20px;
       letter-spacing: 1px;
+      line-height: 1.1;
+    }
+    
+    .price-tag::after {
+      content: "";
+      display: block;
+      height: 20px; /* Added space after price */
     }
     
     .action-buttons {
@@ -206,6 +214,35 @@
       transform: translateX(0);
     }
     
+    .cart-icon {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
     @media (max-width: 768px) {
       .pc-showcase {
         flex-direction: column;
@@ -224,7 +261,7 @@
       }
       
       .price-tag {
-        font-size: 2.2rem;
+        font-size: 2.8rem; /* Adjusted for mobile */
         padding-left: 0;
         text-align: center;
       }
@@ -232,6 +269,11 @@
       .action-buttons {
         padding-left: 0;
         align-items: center;
+      }
+      
+      .cart-icon {
+        top: 20px;
+        right: 20px;
       }
     }
   </style>
@@ -241,6 +283,10 @@
   
   <div class="header">
     <h1>❄️ FROSTBYTE X</h1>
+    <a href="cart.html" class="cart-icon">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
   </div>
   
   <div class="container">
@@ -320,7 +366,15 @@
     const toggleBtn = document.getElementById('toggleContent');
     const addToCartBtn = document.getElementById('addToCart');
     const cartNotification = document.getElementById('cartNotification');
+    const cartCount = document.getElementById('cartCount');
     let isTransitioning = false;
+    let cartItems = 0;
+
+    // Load cart items from localStorage
+    if (localStorage.getItem('cartItems')) {
+      cartItems = parseInt(localStorage.getItem('cartItems'));
+      cartCount.textContent = cartItems;
+    }
 
     function showImage(index) {
       if (isTransitioning) return;
@@ -345,7 +399,10 @@
     }
 
     function addToCart() {
-      // In a real implementation, you would add the item to a cart system
+      cartItems++;
+      cartCount.textContent = cartItems;
+      localStorage.setItem('cartItems', cartItems.toString());
+      
       cartNotification.classList.add('show');
       setTimeout(() => {
         cartNotification.classList.remove('show');
