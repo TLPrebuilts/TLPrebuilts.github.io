@@ -33,46 +33,66 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 2rem;
+      margin-bottom: 2rem;
     }
 
     .image-carousel img {
-      max-width: 100%;
+      width: 100%;
+      max-width: 600px;
       height: auto;
-      border-radius: 8px;
+      border-radius: 12px;
       transition: all 0.3s ease-in-out;
-      max-height: 400px;
+      max-height: 500px;
       object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
     .image-carousel button {
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
       background-color: #4ecdc4;
       color: #111;
       border: none;
       cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.2s ease;
+      border-radius: 8px;
+      transition: all 0.2s ease;
       font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     .image-carousel button:hover {
       background-color: #3bbcb3;
+      transform: scale(1.05);
     }
 
     h1 {
       color: #4ecdc4;
       margin-top: 0;
+      font-size: 3rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .short-desc {
       cursor: pointer;
       font-weight: bold;
-      color: #4ecdc4;
-      margin-top: 20px;
-      text-decoration: underline;
+      color: white;
+      margin: 2rem 0;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #4ecdc4 0%, #3bbcb3 100%);
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+      text-decoration: none;
+      border: none;
+      text-align: center;
+    }
+
+    .short-desc:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
     }
 
     #full-desc {
@@ -83,54 +103,70 @@
     }
 
     #specs {
-      margin-top: 30px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
     }
 
-    #specs ul {
-      padding-left: 1.2rem;
+    .spec-box {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-left: 4px solid #4ecdc4;
+      transition: transform 0.3s ease;
+    }
+
+    .spec-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .spec-box li {
+      list-style: none;
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+    }
+
+    .spec-box li:first-child {
+      font-weight: bold;
+      color: #4ecdc4;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
     }
 
     #benchmarks {
-      margin-top: 50px;
+      margin-top: 60px;
       text-align: center;
     }
 
-    .benchmark-btn {
+    .benchmark-btn, .buy-button {
       margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #4ecdc4;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #4ecdc4 0%, #3bbcb3 100%);
       color: #111;
       border: none;
-      border-radius: 6px;
+      border-radius: 50px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 1.2rem;
       font-weight: bold;
-      transition: background-color 0.2s ease;
+      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
+      box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
     }
 
-    .benchmark-btn:hover {
-      background-color: #3bbcb3;
+    .benchmark-btn:hover, .buy-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
     }
 
     .buy-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #4ecdc4;
-      color: #111;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: background-color 0.2s ease;
-      text-decoration: none;
-    }
-
-    .buy-button:hover {
-      background-color: #3bbcb3;
+      font-size: 1.5rem;
+      padding: 1.2rem 3rem;
+      margin: 2rem 0;
     }
 
     @media (max-width: 768px) {
@@ -139,8 +175,27 @@
         align-items: center;
       }
       
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .image-carousel {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
       .image-carousel img {
-        max-height: 300px;
+        max-height: 350px;
+      }
+      
+      .image-carousel button {
+        padding: 0.8rem 1.2rem;
+        font-size: 1.2rem;
+      }
+      
+      .buy-button {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
       }
     }
   </style>
@@ -157,34 +212,76 @@
     </div>
 
     <div class="right">
-      <h1>❄️ FrostByte X - €750</h1>
-      <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">Buy Now</a>
-      <div class="short-desc" onclick="scrollToDesc()">Click to reveal specs ↓</div>
+      <h1>❄️ FROSTBYTE X - €750</h1>
+      <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
+      <button class="short-desc" onclick="scrollToDesc()">▼ SHOW FULL SPECIFICATIONS ▼</button>
     </div>
   </div>
 
   <div id="full-desc" class="container">
-    <p>The FrostByte X is a budget-friendly gaming PC that delivers solid 1080p performance for esports and modern games. Perfect for gamers looking for great performance without breaking the bank.</p>
+    <p style="font-size: 1.2rem; text-align: center; max-width: 800px; margin: 0 auto 2rem;">The FrostByte X delivers exceptional 1080p gaming performance with its powerful GTX 1660 Super and efficient Intel Core i3-12100F combo. Perfect for esports and modern AAA titles at high settings.</p>
 
     <div id="specs">
-      <h2>Specifications:</h2>
-      <ul>
-        <li>CPU: Intel Core i3-12100F</li>
-        <li>GPU: NVIDIA GTX 1660 Super OC</li>
-        <li>RAM: 16GB DDR4 3200MHz</li>
-        <li>Storage: 512GB NVMe SSD</li>
-        <li>Motherboard: Asrock B660M PRO RS</li>
-        <li>PSU: Corsair 650W Full Modular 80+ Bronze</li>
-        <li>Cooler: Intel Stock Cooler</li>
-        <li>Case: Deepcool CG530</li>
-        <li>OS: Windows 11 Activated</li>
-        <li>Pre-installed: Discord, Steam, Chrome + 1 app of choice</li>
-      </ul>
+      <div class="spec-box">
+        <li>PROCESSOR</li>
+        <li>Intel Core i3-12100F</li>
+        <li>4 Cores / 8 Threads</li>
+        <li>4.3GHz Turbo Boost</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>GRAPHICS CARD</li>
+        <li>NVIDIA GTX 1660 Super OC</li>
+        <li>6GB GDDR6 Memory</li>
+        <li>Dual Fan Cooling</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>MEMORY</li>
+        <li>16GB DDR4 3200MHz</li>
+        <li>Dual Channel</li>
+        <li>Low Latency</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>STORAGE</li>
+        <li>512GB NVMe SSD</li>
+        <li>Ultra-Fast Load Times</li>
+        <li>Space for 5+ AAA Games</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>MOTHERBOARD</li>
+        <li>Asrock B660M PRO RS</li>
+        <li>PCIe 4.0 Support</li>
+        <li>Upgrade Ready</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>POWER SUPPLY</li>
+        <li>Corsair 650W 80+ Bronze</li>
+        <li>Full Modular</li>
+        <li>Quiet Operation</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>COOLING</li>
+        <li>Intel Stock Cooler</li>
+        <li>Efficient Cooling</li>
+        <li>Low Noise</li>
+      </div>
+      
+      <div class="spec-box">
+        <li>CASE</li>
+        <li>Deepcool CG530</li>
+        <li>Premium Build Quality</li>
+        <li>Excellent Airflow</li>
+      </div>
     </div>
 
     <div id="benchmarks">
-      <h2>Performance</h2>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="benchmark-btn" target="_blank">View Benchmarks</a>
+      <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">PERFORMANCE METRICS</h2>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="benchmark-btn" target="_blank">VIEW BENCHMARK RESULTS</a>
     </div>
   </div>
 
@@ -216,6 +313,7 @@
       const desc = document.getElementById("full-desc");
       desc.style.display = "block";
       desc.scrollIntoView({ behavior: "smooth" });
+      document.querySelector('.short-desc').textContent = "▲ SPECIFICATIONS SHOWN ▲";
     }
   </script>
 </body>
