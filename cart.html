@@ -14,38 +14,27 @@
       min-height: 100vh;
     }
     
-    .header {
-      text-align: center;
-      padding: 30px 0 0;
+    .logo-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background-color: #222;
+      border-bottom: 1px solid #333;
       position: relative;
     }
     
-    h1 {
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
       color: #4ecdc4;
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+      text-decoration: none;
     }
     
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
-    }
-    
-    .back-btn {
-      position: absolute;
-      top: 30px;
-      left: 30px;
-      font-size: 1.8rem;
-      color: #4ecdc4;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    
-    .back-btn:hover {
-      transform: scale(1.1);
     }
     
     .cart-container {
@@ -97,15 +86,6 @@
       align-items: center;
     }
     
-    .cart-btn {
-      padding: 8px 15px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
     .quantity-btn {
       width: 35px;
       height: 35px;
@@ -129,6 +109,12 @@
     .remove-btn {
       background: #ff4757;
       color: white;
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
     
     .remove-btn:hover {
@@ -143,6 +129,10 @@
       margin-top: 30px;
       width: 100%;
       max-width: 300px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
     
     .checkout-btn:hover {
@@ -174,7 +164,6 @@
       font-weight: bold;
     }
     
-    /* Removal animation */
     @keyframes itemRemoved {
       0% { opacity: 1; transform: translateX(0); }
       100% { opacity: 0; transform: translateX(-100px); }
@@ -198,35 +187,23 @@
       .cart-item-actions {
         justify-content: center;
       }
-      
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      .back-btn {
-        top: 20px;
-        left: 20px;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <a href="index.html" class="back-btn">←</a>
-    <h1>YOUR CART</h1>
-  </div>
+  <header class="logo-header">
+    <a href="index.html" class="logo">TLPrebuilts</a>
+  </header>
   
   <div class="container">
-    <div class="cart-container" id="cartContainer">
-      <!-- Cart items will be dynamically inserted here -->
-    </div>
+    <div class="cart-container" id="cartContainer"></div>
     
     <div class="cart-total">
       Total: <span class="total-amount" id="totalAmount">€0</span>
     </div>
     
     <div class="checkout-section">
-      <a href="https://paypal.me/Treyplayz1" class="cart-btn checkout-btn" target="_blank">PROCEED TO CHECKOUT</a>
+      <a href="https://paypal.me/Treyplayz1" class="checkout-btn" target="_blank">PROCEED TO CHECKOUT</a>
     </div>
   </div>
 
@@ -254,7 +231,7 @@
                   <button class="quantity-btn" id="decreaseCartQty">-</button>
                   <span class="quantity-display">${cartItems}</span>
                   <button class="quantity-btn" id="increaseCartQty">+</button>
-                  <button class="cart-btn remove-btn" id="removeItem">REMOVE ALL</button>
+                  <button class="remove-btn" id="removeItem">REMOVE ALL</button>
                 </div>
               </div>
             </div>
@@ -264,7 +241,6 @@
           cartTotal.style.display = 'block';
           checkoutSection.style.display = 'flex';
           
-          // Quantity controls in cart
           document.getElementById('increaseCartQty').addEventListener('click', function() {
             cartItems++;
             localStorage.setItem('cartItems', cartItems.toString());
@@ -289,7 +265,6 @@
             }, 300);
           });
         } else {
-          // Cart is empty
           cartContainer.innerHTML = `
             <div class="empty-cart">
               Your cart is empty<br><br>
@@ -301,7 +276,6 @@
         }
       }
       
-      // Initial cart display
       updateCartDisplay();
     });
   </script>
