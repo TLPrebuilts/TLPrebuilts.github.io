@@ -29,7 +29,7 @@
       padding: 20px;
     }
 
-    /* Image Carousel - Your Original Layout */
+    /* Image Carousel */
     .image-carousel {
       display: flex;
       align-items: center;
@@ -68,21 +68,54 @@
       margin-top: 0;
     }
 
-    .short-desc {
+    /* Show Specs Button (Lower position) */
+    .specs-toggle {
       cursor: pointer;
       font-weight: bold;
       color: #4ecdc4;
-      margin-top: 20px;
+      margin: 40px auto 20px;
       text-decoration: underline;
       text-align: center;
       display: block;
+      width: 100%;
+      font-size: 1.1rem;
+    }
+
+    /* Buy Button */
+    .buy-button {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      background-color: #4ecdc4;
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: fit-content;
+    }
+
+    .buy-button:hover {
+      background-color: #3bbcb3;
+      transform: translateY(-2px);
     }
 
     /* Full Description Section */
     #full-desc {
-      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
       width: 100%;
-      transition: opacity 0.5s ease;
+    }
+
+    #full-desc.visible {
+      max-height: 2000px;
+      opacity: 1;
+      margin-top: 20px;
     }
 
     /* Boxed Specs Grid */
@@ -159,7 +192,7 @@
 </head>
 <body>
 
-  <!-- Your Original Top Layout -->
+  <!-- Top Section -->
   <div class="container">
     <div class="left">
       <div class="image-carousel">
@@ -171,16 +204,18 @@
 
     <div class="right">
       <h1>FrostByte X - €750</h1>
-      <span class="short-desc" onclick="scrollToDesc()">Click to reveal more about this PC ↓</span>
+      <p style="text-align: center;">The FrostByte X delivers exceptional 1080p gaming performance</p>
     </div>
   </div>
 
-  <!-- Improved Bottom Section (Dark Theme) -->
-  <div id="full-desc" class="container">
-    <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
-      The FrostByte X delivers exceptional 1080p gaming performance with its powerful GTX 1660 Super and efficient Intel Core i3-12100F combo.
-    </p>
+  <!-- Show Specs Button (Lower position) -->
+  <button class="specs-toggle" onclick="toggleSpecs()">▼ SHOW SPECIFICATIONS ▼</button>
 
+  <!-- Buy Button -->
+  <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
+
+  <!-- Full Description Section -->
+  <div id="full-desc" class="container">
     <div id="specs">
       <div class="spec-box">
         <li>PROCESSOR</li>
@@ -256,10 +291,20 @@
       showImage(currentIndex);
     }
 
-    function scrollToDesc() {
+    function toggleSpecs() {
       const desc = document.getElementById("full-desc");
-      desc.style.display = "block";
-      desc.scrollIntoView({ behavior: "smooth" });
+      const toggleBtn = document.querySelector('.specs-toggle');
+      
+      desc.classList.toggle('visible');
+      
+      if (desc.classList.contains('visible')) {
+        toggleBtn.textContent = "▲ HIDE SPECIFICATIONS ▲";
+        setTimeout(() => {
+          desc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      } else {
+        toggleBtn.textContent = "▼ SHOW SPECIFICATIONS ▼";
+      }
     }
 
     // Initialize first image
