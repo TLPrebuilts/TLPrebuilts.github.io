@@ -23,6 +23,7 @@
       color: #4ecdc4;
       font-size: 3rem;
       margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
     }
     
     .container {
@@ -36,11 +37,13 @@
       flex-wrap: wrap;
       gap: 40px;
       margin-top: 20px;
+      align-items: center;
     }
     
     .image-section {
       flex: 1;
       min-width: 300px;
+      position: relative;
     }
     
     .image-container {
@@ -48,13 +51,14 @@
       overflow: hidden;
       border-radius: 12px;
       height: 500px;
+      background: #1a1a1a;
     }
     
     .pc-image {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: transform 0.5s ease;
+      transition: opacity 0.5s ease-in-out;
     }
     
     .image-nav {
@@ -79,6 +83,10 @@
       justify-content: center;
     }
     
+    .nav-btn:hover {
+      transform: scale(1.1);
+    }
+    
     .info-section {
       flex: 1;
       min-width: 300px;
@@ -88,14 +96,12 @@
     }
     
     .price-tag {
-      background: #4ecdc4;
-      color: #111;
-      font-size: 2.5rem;
+      color: #4ecdc4;
+      font-size: 2.8rem;
       font-weight: bold;
-      padding: 15px 25px;
-      border-radius: 10px;
       margin-bottom: 30px;
       text-align: center;
+      letter-spacing: 1px;
     }
     
     .action-buttons {
@@ -120,24 +126,34 @@
       color: #111;
     }
     
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+    }
+    
     .btn-secondary {
       background: transparent;
       color: #4ecdc4;
       border: 2px solid #4ecdc4;
     }
     
+    .btn-secondary:hover {
+      background: rgba(78, 205, 196, 0.1);
+    }
+    
     .specs-section {
       background: #1a1a1a;
       border-radius: 15px;
-      padding: 30px;
+      padding: 0;
       margin-top: 50px;
-      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.5s ease;
+      max-height: 0;
+      transition: max-height 0.5s ease, padding 0.5s ease;
     }
     
     .specs-section.visible {
-      max-height: 2000px;
+      max-height: 1000px;
+      padding: 30px;
     }
     
     .specs-grid {
@@ -168,6 +184,10 @@
       }
       
       h1 {
+        font-size: 2.2rem;
+      }
+      
+      .price-tag {
         font-size: 2.2rem;
       }
     }
@@ -252,12 +272,17 @@
     const pcImage = document.getElementById('pcImage');
     const specsSection = document.getElementById('specs');
     const toggleBtn = document.getElementById('toggleSpecs');
+    let isTransitioning = false;
 
     function showImage(index) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      
       pcImage.style.opacity = 0;
       setTimeout(() => {
         pcImage.src = images[index];
         pcImage.style.opacity = 1;
+        isTransitioning = false;
       }, 300);
     }
 
@@ -276,11 +301,16 @@
       if (specsSection.classList.contains('visible')) {
         toggleBtn.textContent = 'HIDE SPECIFICATIONS';
         setTimeout(() => {
-          specsSection.scrollIntoView({ behavior: 'smooth' });
+          specsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 300);
       } else {
         toggleBtn.textContent = 'SHOW SPECIFICATIONS';
       }
+    });
+
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
     });
 
     showImage(0);
