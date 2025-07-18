@@ -2,192 +2,178 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FrostByte X - TLPrebuilts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrostByte X</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-    }
-
-    header {
-      background: #222;
+      background-color: #111;
       color: white;
-      padding: 2rem;
-      text-align: center;
     }
 
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 2rem;
+      padding: 2rem 1rem;
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pc-content {
+      display: flex;
       gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .image-section {
+      flex: 1;
+      min-width: 300px;
     }
 
     .pc-image {
-      flex: 1;
-      max-width: 500px;
+      width: 100%;
       border-radius: 8px;
+      max-height: 400px;
+      object-fit: cover;
     }
 
-    .pc-info {
+    .details-section {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      min-width: 300px;
     }
 
-    .short-desc {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
+    .description-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .description-toggle {
+      color: #4ecdc4;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    .hidden {
+      display: none;
     }
 
     .buy-button {
+      display: inline-block;
+      padding: 12px 24px;
       background-color: #4ecdc4;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      width: fit-content;
+      color: #111;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      transition: background-color 0.3s;
     }
 
-    .toggle-btn {
-      margin-top: 1rem;
-      background-color: transparent;
-      border: none;
-      color: #4ecdc4;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .full-description {
-      display: none;
-      margin-top: 1rem;
-      font-size: 1rem;
-      line-height: 1.6;
-      transition: max-height 0.5s ease;
+    .buy-button:hover {
+      background-color: #3ab7ae;
     }
 
     .specs {
-      margin: 3rem auto 0;
-      max-width: 1000px;
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
+      margin-bottom: 2rem;
     }
 
-    .specs h3 {
+    .specs h2 {
       margin-top: 0;
     }
 
     .specs ul {
-      list-style: none;
-      padding-left: 0;
+      padding-left: 1.2rem;
     }
 
-    .specs li {
-      margin-bottom: 0.5rem;
+    .benchmark-link {
+      display: inline-block;
+      color: #4ecdc4;
+      text-decoration: none;
+      margin-bottom: 2rem;
     }
 
-    .benchmarks {
-      text-align: center;
-      margin: 4rem 0;
-    }
-
-    .benchmark-button {
-      background-color: #333;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #222;
-      color: white;
-      margin-top: 4rem;
+    .benchmark-link:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
-      .container {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .pc-content {
         flex-direction: column;
-        align-items: center;
       }
-
+      
       .pc-image {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .pc-info {
-        align-items: center;
-        text-align: center;
-      }
-
-      .buy-button, .toggle-btn {
-        align-self: center;
+        max-height: 300px;
       }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>FrostByte X - €75</h1>
-  </header>
-
   <div class="container">
-    <img src="images/frostbyte1.jpg" alt="FrostByte X" class="pc-image" />
-    <div class="pc-info">
-      <div class="short-desc">
-        Budget-friendly prebuilt with solid 1080p gaming performance, ideal for entry-level creators and competitive gamers.
+    <div class="header">
+      <h1>❄️ FrostByte X</h1>
+    </div>
+
+    <div class="pc-content">
+      <div class="image-section">
+        <img src="images/frostbyte1.jpg" alt="FrostByte X" class="pc-image" />
       </div>
-      <button class="buy-button">Buy Now</button>
-      <button class="toggle-btn" onclick="toggleDescription()">View Full Description</button>
-      <div class="full-description" id="description">
-        FrostByte X is built to deliver reliable performance for everyday gaming and content creation. Powered by Intel’s 12th Gen Core i3 and paired with the GTX 1660 Super, it runs most modern games at 1080p high settings. With fast NVMe storage and 16GB of RAM, multitasking and loading times are a breeze.
+
+      <div class="details-section">
+        <div class="description-container">
+          <p>The FrostByte X is a budget-friendly gaming PC that delivers solid 1080p performance for esports and modern games.</p>
+          <p id="moreDesc" class="hidden">
+            With its Intel Core i3-12100F and GTX 1660 Super combo, this system handles popular titles like Fortnite, Valorant, 
+            and Apex Legends with ease. The 512GB NVMe SSD ensures fast boot times and quick game loading, while the 16GB of 
+            DDR4 RAM provides smooth multitasking. Perfect for gamers looking for great performance without breaking the bank.
+          </p>
+          <span class="description-toggle" onclick="toggleDescription()">View full description</span>
+        </div>
+
+        <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">Buy Now - €750</a>
+
+        <div class="specs">
+          <h2>Specifications</h2>
+          <ul>
+            <li>Intel Core i3-12100F</li>
+            <li>NVIDIA GTX 1660 Super OC</li>
+            <li>16GB DDR4 3200MHz RAM</li>
+            <li>512GB NVMe SSD</li>
+            <li>Asrock B660M PRO RS Motherboard</li>
+            <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
+            <li>Intel Stock Cooler</li>
+            <li>Deepcool CG530 Case</li>
+            <li>Windows 11 Activated</li>
+            <li>Pre-installed: Discord, Steam, Chrome + 1 app of choice</li>
+          </ul>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="benchmark-link" target="_blank">View Benchmarks →</a>
       </div>
     </div>
   </div>
 
-  <div class="specs">
-    <h3>Specifications</h3>
-    <ul>
-      <li>Intel Core i3-12100F</li>
-      <li>GTX 1660 Super OC 6GB Dual Fan GPU</li>
-      <li>16GB DDR4 3200MHz RAM</li>
-      <li>512GB NVMe SSD</li>
-      <li>Intel Stock Cooler</li>
-      <li>ASRock B660M PRO RS Motherboard</li>
-      <li>Corsair 650W Full Modular 80+ Bronze PSU</li>
-      <li>Deepcool CG530 Mid Tower (Black)</li>
-      <li>Windows 11 Pro pre-installed + Chrome, Discord, Steam + 1 app of your choice</li>
-    </ul>
-  </div>
-
-  <div class="benchmarks">
-    <button class="benchmark-button" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">View Benchmarks</button>
-  </div>
-
-  <footer>
-    <p>© 2025 TLPrebuilts. All rights reserved.</p>
-  </footer>
-
   <script>
     function toggleDescription() {
-      const desc = document.getElementById('description');
-      desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
+      const more = document.getElementById('moreDesc');
+      const toggle = document.querySelector('.description-toggle');
+      more.classList.toggle('hidden');
+      toggle.textContent = more.classList.contains('hidden') ? 'View full description' : 'Hide description';
     }
   </script>
-
 </body>
 </html>
