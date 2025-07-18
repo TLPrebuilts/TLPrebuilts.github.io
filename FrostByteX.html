@@ -145,6 +145,16 @@
       background: rgba(78, 205, 196, 0.1);
     }
     
+    .btn-tertiary {
+      background: #333;
+      color: white;
+      border: 2px solid #444;
+    }
+    
+    .btn-tertiary:hover {
+      background: #444;
+    }
+    
     .content-section {
       background: #1a1a1a;
       border-radius: 15px;
@@ -178,6 +188,24 @@
       text-align: center;
     }
     
+    .cart-notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4ecdc4;
+      color: #111;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      transform: translateX(200%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .cart-notification.show {
+      transform: translateX(0);
+    }
+    
     @media (max-width: 768px) {
       .pc-showcase {
         flex-direction: column;
@@ -209,6 +237,8 @@
   </style>
 </head>
 <body>
+  <div class="cart-notification" id="cartNotification">Added to Cart!</div>
+  
   <div class="header">
     <h1>❄️ FROSTBYTE X</h1>
   </div>
@@ -230,6 +260,7 @@
         
         <div class="action-buttons">
           <a href="https://paypal.me/Treyplayz1" class="btn btn-primary" target="_blank">BUY NOW</a>
+          <button class="btn btn-tertiary" id="addToCart">ADD TO CART</button>
           <button class="btn btn-secondary" id="toggleContent">SHOW SPECS</button>
         </div>
       </div>
@@ -287,6 +318,8 @@
     const pcImage = document.getElementById('pcImage');
     const contentSection = document.getElementById('content');
     const toggleBtn = document.getElementById('toggleContent');
+    const addToCartBtn = document.getElementById('addToCart');
+    const cartNotification = document.getElementById('cartNotification');
     let isTransitioning = false;
 
     function showImage(index) {
@@ -311,6 +344,14 @@
       showImage(currentIndex);
     }
 
+    function addToCart() {
+      // In a real implementation, you would add the item to a cart system
+      cartNotification.classList.add('show');
+      setTimeout(() => {
+        cartNotification.classList.remove('show');
+      }, 3000);
+    }
+
     toggleBtn.addEventListener('click', function() {
       contentSection.classList.toggle('visible');
       if (contentSection.classList.contains('visible')) {
@@ -322,6 +363,8 @@
         toggleBtn.textContent = 'SHOW SPECS';
       }
     });
+
+    addToCartBtn.addEventListener('click', addToCart);
 
     images.forEach(src => {
       const img = new Image();
