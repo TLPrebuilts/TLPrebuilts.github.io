@@ -234,6 +234,28 @@
     .benchmark-section {
       margin-top: 40px;
       text-align: center;
+      padding: 0 20px;
+    }
+    
+    .benchmark-btn {
+      padding: 16px 25px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
+      max-width: 300px;
+      background: #4ecdc4;
+      color: #111;
+      display: inline-block;
+    }
+    
+    .benchmark-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
     }
     
     .cart-notification {
@@ -274,11 +296,15 @@
       border-radius: 50%;
       width: 20px;
       height: 20px;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
       font-weight: bold;
+    }
+    
+    .cart-count.has-items {
+      display: flex;
     }
     
     @media (max-width: 768px) {
@@ -403,7 +429,7 @@
       </div>
       
       <div class="benchmark-section">
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary" target="_blank">VIEW BENCHMARK RESULTS</a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="benchmark-btn" target="_blank">VIEW BENCHMARK RESULTS</a>
       </div>
     </div>
   </div>
@@ -428,7 +454,14 @@
     const increaseQty = document.getElementById('increaseQty');
     const decreaseQty = document.getElementById('decreaseQty');
 
-    cartCount.textContent = cartItems;
+    function updateCartCount() {
+      cartCount.textContent = cartItems;
+      if (cartItems === 0) {
+        cartCount.classList.remove('has-items');
+      } else {
+        cartCount.classList.add('has-items');
+      }
+    }
 
     function showImage(index) {
       if (isTransitioning) return;
@@ -466,7 +499,7 @@
 
     function addToCart() {
       cartItems += quantity;
-      cartCount.textContent = cartItems;
+      updateCartCount();
       localStorage.setItem('cartItems', cartItems.toString());
       
       cartNotification.classList.add('show');
@@ -494,6 +527,7 @@
       img.src = src;
     });
 
+    updateCartCount();
     showImage(0);
   </script>
 </body>

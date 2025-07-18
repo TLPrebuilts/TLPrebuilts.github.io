@@ -12,6 +12,8 @@
       background-color: #111;
       color: white;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     
     .logo-header {
@@ -35,6 +37,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
+      flex: 1;
     }
     
     .cart-container {
@@ -164,6 +167,13 @@
       font-weight: bold;
     }
     
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #222;
+      color: white;
+    }
+    
     @keyframes itemRemoved {
       0% { opacity: 1; transform: translateX(0); }
       100% { opacity: 0; transform: translateX(-100px); }
@@ -206,6 +216,10 @@
       <a href="https://paypal.me/Treyplayz1" class="checkout-btn" target="_blank">PROCEED TO CHECKOUT</a>
     </div>
   </div>
+
+  <footer>
+    <p>© 2025 TLPrebuilts. All rights reserved.</p>
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
