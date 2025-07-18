@@ -12,6 +12,7 @@
       line-height: 1.6;
       background-color: #111;
       color: white;
+      transition: all 0.3s ease;
     }
 
     .container {
@@ -29,30 +30,30 @@
       padding: 20px;
     }
 
-    /* Bigger Image */
+    /* Bigger Image with Smooth Transitions */
     .image-carousel {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem; /* Smaller gap */
+      gap: 0.5rem;
       margin-bottom: 1rem;
     }
 
     .image-carousel img {
       width: 100%;
-      max-width: 700px; /* Bigger image */
+      max-width: 700px;
       height: auto;
       border-radius: 12px;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.4s ease-in-out;
       max-height: 500px;
       object-fit: cover;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
-    /* Smaller Buttons */
+    /* Smaller Buttons with Smooth Hover */
     .image-carousel button {
-      padding: 0.5rem 0.8rem; /* Smaller padding */
-      font-size: 1rem; /* Smaller font */
+      padding: 0.5rem 0.8rem;
+      font-size: 1rem;
       background-color: #4ecdc4;
       color: #111;
       border: none;
@@ -63,13 +64,20 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
+    .image-carousel button:hover {
+      transform: scale(1.05);
+      background-color: #3bbcb3;
+    }
+
     h1 {
       color: #4ecdc4;
       margin-top: 0;
       font-size: 2.5rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
     }
 
+    /* Enhanced Toggle Button */
     .short-desc {
       cursor: pointer;
       font-weight: bold;
@@ -82,19 +90,31 @@
       font-size: 1rem;
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
-      text-decoration: none;
       border: none;
       text-align: center;
     }
 
+    .short-desc:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(78, 205, 196, 0.4);
+    }
+
+    /* Smooth Specs Transition */
     #full-desc {
-      display: none;
-      margin-top: 10px;
-      transition: opacity 0.5s ease;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
       width: 100%;
     }
 
-    /* Description moved to top right */
+    #full-desc.visible {
+      max-height: 2000px; /* Adjust based on content */
+      opacity: 1;
+      margin-top: 30px;
+    }
+
+    /* Description Section */
     .right {
       display: flex;
       flex-direction: column;
@@ -105,14 +125,16 @@
       margin: 0.5rem 0 1.5rem 0;
       font-size: 1.1rem;
       max-width: 500px;
+      transition: all 0.3s ease;
     }
 
-    /* Rest of the styling remains the same */
+    /* Specs Grid with Smooth Entries */
     #specs {
-      margin-top: 40px;
+      margin-top: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
+      transition: all 0.4s ease;
     }
 
     .spec-box {
@@ -121,17 +143,27 @@
       padding: 1.5rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       border-left: 4px solid #4ecdc4;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+    }
+
+    #full-desc.visible .spec-box {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .spec-box:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) !important;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
     .spec-box li {
       list-style: none;
       margin: 0.8rem 0;
       font-size: 1.1rem;
+      transition: all 0.3s ease;
     }
 
     .spec-box li:first-child {
@@ -143,9 +175,19 @@
       padding-bottom: 0.5rem;
     }
 
+    /* Benchmark Section */
     #benchmarks {
       margin-top: 60px;
       text-align: center;
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #full-desc.visible #benchmarks {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
     }
 
     .benchmark-btn, .buy-button {
@@ -203,6 +245,10 @@
         font-size: 1.2rem;
         padding: 1rem 2rem;
       }
+      
+      #specs {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -221,7 +267,7 @@
       <h1>❄️ FROSTBYTE X - €750</h1>
       <p>The FrostByte X delivers exceptional 1080p gaming performance with its powerful GTX 1660 Super and efficient Intel Core i3-12100F combo. Perfect for esports and modern AAA titles at high settings.</p>
       <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
-      <button class="short-desc" onclick="scrollToDesc()">▼ SHOW FULL SPECIFICATIONS ▼</button>
+      <button class="short-desc" onclick="toggleSpecs()">▼ SHOW FULL SPECIFICATIONS ▼</button>
     </div>
   </div>
 
@@ -234,7 +280,7 @@
       
       <div class="spec-box">
         <li>GRAPHICS CARD</li>
-        <li>NVIDIA GTX 1660 6GB Super OC </li>
+        <li>NVIDIA GTX 1660 6GB Super OC</li>
       </div>
       
       <div class="spec-box">
@@ -260,7 +306,6 @@
       <div class="spec-box">
         <li>COOLING</li>
         <li>Intel Stock Cooler</li>
-
       </div>
       
       <div class="spec-box">
@@ -276,17 +321,21 @@
   </div>
 
   <script>
+    // Image Carousel
     const imageList = [
       "images/frostbyte1.jpg",
       "images/frostbyte2.jpg",
       "images/frostbyte3.jpg"
     ];
-
     let currentIndex = 0;
     const pcImage = document.getElementById("pcImage");
 
     function showImage(index) {
-      pcImage.src = imageList[index];
+      pcImage.style.opacity = 0;
+      setTimeout(() => {
+        pcImage.src = imageList[index];
+        pcImage.style.opacity = 1;
+      }, 200);
     }
 
     function prevImage() {
@@ -299,12 +348,23 @@
       showImage(currentIndex);
     }
 
-    function scrollToDesc() {
+    function toggleSpecs() {
       const desc = document.getElementById("full-desc");
-      desc.style.display = "block";
-      desc.scrollIntoView({ behavior: "smooth" });
-      document.querySelector('.short-desc').textContent = "▲ SPECIFICATIONS SHOWN ▲";
+      const toggleBtn = document.querySelector('.short-desc');
+      
+      desc.classList.toggle('visible');
+      
+      if (desc.classList.contains('visible')) {
+        toggleBtn.textContent = "▲ HIDE SPECIFICATIONS ▲";
+        setTimeout(() => {
+          desc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      } else {
+        toggleBtn.textContent = "▼ SHOW FULL SPECIFICATIONS ▼";
+      }
     }
+
+    showImage(0);
   </script>
 </body>
 </html>
