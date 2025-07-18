@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FrostByte X</title>
   <style>
     body {
@@ -13,234 +13,214 @@
       background-color: #111;
       color: white;
     }
-
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
-    }
-
-    .left, .right {
-      flex: 1;
-      min-width: 300px;
       padding: 20px;
     }
-
-    /* Image Carousel */
-    .image-carousel {
+    .pc-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .image-section {
+      flex: 1;
+      min-width: 300px;
+    }
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      height: 380px;
+    }
+    .pc-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .image-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .nav-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #4ecdc4;
+      color: #111;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
     }
-
-    .image-carousel img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      transition: opacity 0.4s ease-in-out;
-      max-height: 400px;
-      object-fit: cover;
-    }
-
-    .image-carousel button {
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
-      background-color: #4ecdc4;
-      color: #111;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: all 0.2s ease;
-      font-weight: bold;
-    }
-
-    .image-carousel button:hover {
-      background-color: #3bbcb3;
-    }
-
-    h1 {
-      color: #4ecdc4;
-      margin-top: 0;
-    }
-
-    /* Right Side Buttons */
-    .right-buttons {
+    .info-section {
+      flex: 1;
+      min-width: 300px;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-top: 1rem;
     }
-
-    .specs-toggle, .buy-button {
-      padding: 0.8rem 1.5rem;
-      background-color: #4ecdc4;
+    .price-tag {
+      background: #4ecdc4;
       color: #111;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      font-size: 2.2rem;
       font-weight: bold;
-      transition: all 0.3s ease;
-      text-align: center;
-      width: fit-content;
+      padding: 15px 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
     }
-
-    .specs-toggle {
-      background: transparent;
-      color: #4ecdc4;
-      text-decoration: underline;
-    }
-
-    .buy-button:hover {
-      background-color: #3bbcb3;
-      transform: translateY(-2px);
-    }
-
-    /* Full Description Section */
-    #full-desc {
-      display: none;
-      width: 100%;
-      transition: opacity 0.5s ease;
-    }
-
-    /* Original Bottom Section */
-    #specs {
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       margin-top: 30px;
     }
-
-    #specs ul {
-      padding-left: 1.2rem;
-    }
-
-    #benchmarks {
-      margin-top: 60px;
-      text-align: center;
-    }
-
-    .benchmark-btn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #4ecdc4;
-      color: #111;
+    .btn {
+      padding: 14px 25px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
       border: none;
-      border-radius: 6px;
       cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
       transition: all 0.3s ease;
     }
-
-    .benchmark-btn:hover {
-      background-color: #3bbcb3;
-      transform: translateY(-2px);
+    .btn-primary {
+      background: #4ecdc4;
+      color: #111;
     }
-
+    .btn-secondary {
+      background: transparent;
+      color: #4ecdc4;
+      border: 2px solid #4ecdc4;
+    }
+    .specs-section {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .spec-card {
+      background: #222;
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #4ecdc4;
+    }
+    .benchmark-section {
+      text-align: center;
+      margin-top: 40px;
+    }
     @media (max-width: 768px) {
-      .container {
+      .pc-showcase {
         flex-direction: column;
-        align-items: center;
       }
-      
-      .right-buttons {
-        align-items: center;
+      .image-container {
+        height: 300px;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Top Section -->
   <div class="container">
-    <div class="left">
-      <div class="image-carousel">
-        <button onclick="prevImage()">←</button>
-        <img id="pcImage" src="images/frostbyte1.jpg" alt="FrostByte X">
-        <button onclick="nextImage()">→</button>
+    <div class="pc-showcase">
+      <div class="image-section">
+        <div class="image-container">
+          <img src="images/frostbyte1.jpg" alt="FrostByte X" class="pc-image" id="pcImage">
+        </div>
+        <div class="image-nav">
+          <button class="nav-btn" onclick="prevImage()">←</button>
+          <button class="nav-btn" onclick="nextImage()">→</button>
+        </div>
       </div>
-    </div>
-
-    <div class="right">
-      <h1>FrostByte X - €750</h1>
-      <p>The FrostByte X delivers exceptional 1080p gaming performance</p>
       
-      <div class="right-buttons">
-        <button class="specs-toggle" onclick="toggleSpecs()">▼ SHOW SPECIFICATIONS ▼</button>
-        <a href="https://paypal.me/yourlink" class="buy-button" target="_blank">BUY NOW</a>
+      <div class="info-section">
+        <div class="price-tag">€750</div>
+        
+        <div class="action-buttons">
+          <button class="btn btn-primary">BUY NOW</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('specs').scrollIntoView()">SHOW SPECIFICATIONS</button>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Original Bottom Section -->
-  <div id="full-desc" class="container">
-    <div id="specs">
-      <h2>Specifications:</h2>
-      <ul>
-        <li>CPU: Intel Core i3-12100F</li>
-        <li>GPU: NVIDIA GTX 1660 Super OC 6GB</li>
-        <li>RAM: 16GB DDR4 3200MHz</li>
-        <li>Storage: 512GB NVMe SSD</li>
-        <li>Motherboard: Asrock B660M PRO RS</li>
-        <li>PSU: Corsair 650W Full Modular 80+ Bronze</li>
-        <li>Cooling: Intel Stock Cooler</li>
-        <li>Case: Deepcool CG530</li>
-      </ul>
+    
+    <div class="specs-section" id="specs">
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div>PROCESSOR</div>
+          <div>Intel Core i3-12100F</div>
+        </div>
+        <div class="spec-card">
+          <div>GRAPHICS CARD</div>
+          <div>NVIDIA GTX 1660 Super OC 6GB</div>
+        </div>
+        <div class="spec-card">
+          <div>MEMORY</div>
+          <div>16GB DDR4 3200MHz</div>
+        </div>
+        <div class="spec-card">
+          <div>STORAGE</div>
+          <div>512GB NVMe SSD</div>
+        </div>
+        <div class="spec-card">
+          <div>MOTHERBOARD</div>
+          <div>Asrock B660M PRO RS</div>
+        </div>
+        <div class="spec-card">
+          <div>POWER SUPPLY</div>
+          <div>Corsair 650W Full Modular 80+ Bronze</div>
+        </div>
+        <div class="spec-card">
+          <div>COOLING</div>
+          <div>Intel Stock Cooler</div>
+        </div>
+        <div class="spec-card">
+          <div>CASE</div>
+          <div>Deepcool CG530</div>
+        </div>
+      </div>
     </div>
-
-    <div id="benchmarks">
-      <h2>PERFORMANCE METRICS</h2>
-      <button class="benchmark-btn" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">VIEW BENCHMARK RESULTS</button>
+    
+    <div class="benchmark-section">
+      <button class="btn btn-primary">VIEW BENCHMARK RESULTS</button>
     </div>
   </div>
 
   <script>
-    const imageList = [
+    const images = [
       "images/frostbyte1.jpg",
       "images/frostbyte2.jpg",
       "images/frostbyte3.jpg"
     ];
     let currentIndex = 0;
-    const pcImage = document.getElementById("pcImage");
+    const pcImage = document.getElementById('pcImage');
 
     function showImage(index) {
       pcImage.style.opacity = 0;
       setTimeout(() => {
-        pcImage.src = imageList[index];
+        pcImage.src = images[index];
         pcImage.style.opacity = 1;
-      }, 200);
+      }, 300);
     }
 
     function prevImage() {
-      currentIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
       showImage(currentIndex);
     }
 
     function nextImage() {
-      currentIndex = (currentIndex + 1) % imageList.length;
+      currentIndex = (currentIndex + 1) % images.length;
       showImage(currentIndex);
     }
-
-    function toggleSpecs() {
-      const desc = document.getElementById("full-desc");
-      const toggleBtn = document.querySelector('.specs-toggle');
-      
-      if (desc.style.display === "block") {
-        desc.style.display = "none";
-        toggleBtn.textContent = "▼ SHOW SPECIFICATIONS ▼";
-      } else {
-        desc.style.display = "block";
-        toggleBtn.textContent = "▲ HIDE SPECIFICATIONS ▲";
-        setTimeout(() => {
-          desc.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 300);
-      }
-    }
-
-    // Initialize first image
-    showImage(0);
   </script>
 </body>
 </html>
